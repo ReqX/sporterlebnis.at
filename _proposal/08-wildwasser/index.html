@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Sporterlebnis Pristavec</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-dark: #001f4d;
+            --color-blue: #0066aa;
+            --color-blue-dark: #003366;
+            --color-blue-light: #e6f2ff;
+            --color-accent: #ff6600;
+            --color-white: #ffffff;
+            --font-heading: 'Bebas Neue', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: #333; background-color: var(--color-white); overflow-x: hidden; line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); text-transform: uppercase; line-height: 1; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Nav */
+        header { position: absolute; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .logo { font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-white); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); letter-spacing: 1px; }
+        .logo a { color: inherit; text-decoration: none; }
+        .logo span { color: var(--color-accent); }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { color: var(--color-white); font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); transition: color 0.2s; }
+        nav a:hover, nav a.active { color: var(--color-accent); }
+        .btn { display: inline-block; font-family: var(--font-heading); font-size: 1.5rem; padding: 0.8rem 2rem; background-color: var(--color-accent); color: var(--color-white); text-transform: uppercase; letter-spacing: 1px; transform: skewX(-15deg); transition: all 0.3s; border: none; cursor: pointer; box-shadow: 4px 4px 0px var(--color-dark); }
+        .btn span { display: inline-block; transform: skewX(15deg); }
+        .btn:hover { background-color: var(--color-dark); box-shadow: 4px 4px 0px var(--color-accent); transform: skewX(-15deg) translateY(-2px); }
+
+        /* Hero */
+        .hero { height: 90vh; background: url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=2500&auto=format&fit=crop') center/cover no-repeat; position: relative; clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); display: flex; align-items: center; padding: 0 5%; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,51,102,0.8) 0%, rgba(0,102,170,0.3) 100%); }
+        .hero-content { position: relative; z-index: 10; max-width: 800px; color: var(--color-white); }
+        .hero-badge { display: inline-block; background: var(--color-accent); padding: 0.5rem 1rem; font-family: var(--font-heading); font-size: 1.5rem; transform: skewX(-15deg); margin-bottom: 1rem; }
+        .hero-badge span { display: inline-block; transform: skewX(15deg); }
+        .hero h1 { font-size: clamp(4rem, 8vw, 8rem); text-shadow: 4px 4px 0px rgba(0,0,0,0.2); margin-bottom: 1rem; line-height: 0.9; }
+        .hero p { font-size: 1.5rem; font-weight: 700; max-width: 600px; margin-bottom: 2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+
+        /* Activities Section */
+        .activities-section { padding: 5rem 5% 8rem; position: relative; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 4rem; color: var(--color-blue-dark); position: relative; display: inline-block; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%) skewX(-15deg); width: 100px; height: 6px; background-color: var(--color-accent); }
+        
+        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto; }
+        .activity-card { background: var(--color-blue-light); border: 4px solid var(--color-blue-dark); padding: 2rem; position: relative; box-shadow: 8px 8px 0px var(--color-blue); transition: transform 0.2s; overflow: hidden; display: flex; flex-direction: column; height: 100%; }
+        .activity-card:hover { transform: translateY(-5px); box-shadow: 12px 12px 0px var(--color-accent); }
+        .activity-img { height: 200px; margin: -2rem -2rem 1.5rem -2rem; clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+        .activity-img img { width: 100%; height: 100%; object-fit: cover; }
+        .activity-card h3 { font-size: 2.5rem; color: var(--color-blue-dark); margin-bottom: 1rem; }
+        .activity-card p { margin-bottom: 1.5rem; flex-grow: 1; }
+        .activity-card .btn { align-self: flex-start; font-size: 1.2rem; padding: 0.6rem 1.5rem; }
+
+        /* News / Angebote Section */
+        .news-section { background-color: var(--color-blue-dark); color: var(--color-white); padding: 8rem 5%; clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%); margin-top: -2rem; position: relative; }
+        .news-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0 100 L50 0 L100 100 Z" fill="rgba(255,255,255,0.03)"/></svg>'); z-index: 0; }
+        .news-container { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; }
+        .news-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem; }
+        .news-header h2 { font-size: 4rem; color: var(--color-white); position: relative; }
+        .news-header h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 100px; height: 6px; background-color: var(--color-accent); transform: skewX(-15deg); }
+        
+        .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .news-item { background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); padding: 2rem; transform: skewX(-5deg); transition: all 0.3s; }
+        .news-item:hover { background: rgba(255,255,255,0.1); border-color: var(--color-accent); transform: skewX(-5deg) translateY(-5px); }
+        .news-item-content { transform: skewX(5deg); }
+        .news-badge { display: inline-block; background: var(--color-accent); color: var(--color-white); padding: 0.2rem 0.5rem; font-family: var(--font-heading); text-transform: uppercase; margin-bottom: 1rem; }
+        .news-item h3 { font-size: 2rem; margin-bottom: 1rem; color: var(--color-white); }
+        .news-item p { color: #ccc; }
+
+        /* Footer */
+        footer { background-color: var(--color-dark); color: var(--color-white); padding: 4rem 5% 2rem; clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%); margin-top: -2rem; position: relative; z-index: 10; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem; padding-top: 2rem; }
+        .footer-col h4 { font-size: 2rem; color: var(--color-accent); margin-bottom: 1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.5rem; }
+        .footer-col a { color: #aaa; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--color-white); }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; color: #666; }
+
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 4rem; }
+            nav ul { display: none; }
+            .news-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+            .activities-section { padding: 3rem 5% 5rem; }
+            .news-section { padding: 6rem 5%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">Sport<span>erlebnis</span></a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                <li><a href="camping.html">Camping</a></li>
+                <li><a href="preise.html">Preise</a></li>
+                <li><a href="schulsport.html">Schulsport</a></li>
+                <li><a href="restaurant.html">Restaurant</a></li>
+            </ul>
+        </nav>
+        <button class="btn"><span>Buchen</span></button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><span>Sporterlebnis</span></div>
+            <h1>Dabei sein<br>beim Frei sein!</h1>
+            <p>Aktiv-Sport-Erlebnis-Camp Pristavec in Obervellach, Kärnten.</p>
+            <a href="rafting.html" class="btn"><span>Abenteuer Starten</span></a>
+        </div>
+    </section>
+
+    <section class="activities-section">
+        <div class="section-header">
+            <h2>Unsere Welten</h2>
+        </div>
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-img">
+                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=800&auto=format&fit=crop" alt="Rafting & Canyoning">
+                </div>
+                <h3>Rafting & Canyoning</h3>
+                <p>Spüre die Kraft des Wildwassers. Rafting auf der Möll oder actionreiches Canyoning für jedes Level. Wir bringen dich sicher durch die Wellen und Stromschnellen.</p>
+                <a href="rafting.html" class="btn"><span>Mehr erfahren</span></a>
+            </div>
+            <div class="activity-card">
+                <div class="activity-img">
+                    <img src="https://images.unsplash.com/photo-1508873696983-2dfd5898f08b?q=80&w=800&auto=format&fit=crop" alt="Camping & Unterkünfte">
+                </div>
+                <h3>Camping & Chalets</h3>
+                <p>Vom klassischen Stellplatz bis zum gemütlichen Chalet oder Mobilheim. Dein Basecamp für den nächsten Adrenalinkick mitten in der Natur.</p>
+                <a href="camping.html" class="btn"><span>Mehr erfahren</span></a>
+            </div>
+            <div class="activity-card">
+                <div class="activity-img">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop" alt="Weitere Aktivitäten">
+                </div>
+                <h3>Weitere Action</h3>
+                <p>Hochseilgarten, Motorikpark, Driving Range und Kinderparadies. Bei uns wird auch abseits des Wassers niemandem langweilig.</p>
+                <a href="schulsport.html" class="btn"><span>Alle Aktivitäten</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="news-container">
+            <div class="news-header">
+                <h2>News & Angebote</h2>
+                <button class="btn" style="background: var(--color-white); color: var(--color-dark); box-shadow: 4px 4px 0px var(--color-accent);"><span>Alle News</span></button>
+            </div>
+            <div class="news-grid">
+                <div class="news-item">
+                    <div class="news-item-content">
+                        <div class="news-badge">Angebot</div>
+                        <h3>Aktivwochenende</h3>
+                        <p>2 sportliche Tage im Camp: Begrüßungsgetränk, 2 Übernachtungen, Halbpension (1x Grillen), Rafting auf der Möll, Canyoning in der Wunzenschlucht und Lagerfeuerabend.</p>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-item-content">
+                        <div class="news-badge">News</div>
+                        <h3>Neue Familien Chalets</h3>
+                        <p>Unsere neuen Chalets in den Hohen Tauern bieten Platz für 12-15 Personen. Ausgestattet mit toller Küche, großem Aufenthaltsraum und 4 Schlafzimmern für die ganze Familie.</p>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-item-content">
+                        <div class="news-badge">Info</div>
+                        <h3>Kinderparadies am Platz</h3>
+                        <p>Wir haben 2 Kinderspielplätze, eine Wasserwelt mit Wasserpumpe und einen Motorikpark. In der Saison gibt es gratis Kinderanimation wie Klettern und Nachtwanderungen.</p>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-item-content">
+                        <div class="news-badge">Schulsport</div>
+                        <h3>Schulsportwochen</h3>
+                        <p>Das perfekte Programm für Schulklassen! Rafting, Canyoning, Hochseilgarten, Motorikpark und vieles mehr – unvergessliche Erlebnisse für Schüler.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-family: var(--font-heading); font-size: 2.5rem; letter-spacing: 1px; color: var(--color-white);">Sport<span style="color: var(--color-accent)">erlebnis</span></h4>
+                <p style="color: #aaa; margin-bottom: 1rem; font-weight: 500;">Dabei sein beim Frei sein! Dein Familienbetrieb seit 1982.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Erkunden</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html">Camping</a></li>
+                    <li><a href="preise.html">Preise</a></li>
+                    <li><a href="schulsport.html">Schulsport</a></li>
+                    <li><a href="restaurant.html">Restaurant</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li>Aktiv-Sport-Erlebnis-Camp Pristavec</li>
+                    <li>9821 Obervellach 175, Austria</li>
+                    <li>Tel: +43 4782 / 2727</li>
+                    <li>info@sporterlebnis.at</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten. Design Konzept "Wildwasser".
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preisliste | Sporterlebnis Pristavec | Naturkraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #090e0b;
+            --color-surface: #121c17;
+            --color-primary: #1a3a2a;
+            --color-primary-light: #2b5c43;
+            --color-accent: #c4a24c;
+            --color-text: #e8edea;
+            --color-text-muted: #a4b3ab;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            transition: background 0.3s ease;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--color-accent);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        nav a.active {
+            color: var(--color-accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid:hover {
+            background: #d4b566;
+            color: var(--color-bg);
+            border-color: #d4b566;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1542385151-efd9000785a0?q=80&w=2500&auto=format&fit=crop') center/cover no-repeat;
+            filter: brightness(0.3) contrast(1.1);
+            z-index: -1;
+            transform: scale(1.05);
+            animation: slowZoom 20s ease-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            margin-top: 5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* Tables & Content */
+        .prices {
+            padding: 6rem 5%;
+            background: var(--color-bg);
+        }
+
+        .price-section {
+            max-width: 1000px;
+            margin: 0 auto 6rem;
+        }
+
+        .price-section h2 {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(196, 162, 76, 0.3);
+            padding-bottom: 1rem;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--color-surface);
+            border: 1px solid rgba(196, 162, 76, 0.1);
+        }
+
+        .price-table th, .price-table td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .price-table th {
+            background: rgba(0,0,0,0.3);
+            color: var(--color-accent);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .price-table tr:hover td {
+            background: rgba(196, 162, 76, 0.05);
+        }
+
+        .price-table td.price-val {
+            text-align: right;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            text-align: center;
+        }
+
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .package-card {
+            background: var(--color-surface);
+            padding: 2rem;
+            border: 1px solid rgba(196, 162, 76, 0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        .package-card::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid rgba(196, 162, 76, 0.1);
+            pointer-events: none;
+        }
+
+        .package-card h3 {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .package-card p {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .package-price {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050806;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(196, 162, 76, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a {
+            color: var(--color-text-muted);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            nav ul {
+                display: none;
+            }
+            .price-table th, .price-table td {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Sport<span>erlebnis</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                <li><a href="camping.html">Camping</a></li>
+                <li><a href="schulsport.html">Schulsport</a></li>
+                <li><a href="restaurant.html">Restaurant</a></li>
+                <li><a href="preise.html" class="active">Preise</a></li>
+            </ul>
+        </nav>
+        <a href="#kontakt" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;">Kontakt</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Preisliste 2026</h1>
+        </div>
+    </section>
+
+    <section class="prices">
+        
+        <div class="price-section">
+            <h2>Wassersport & Action</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Aktivität</th>
+                        <th style="text-align: right;">Preis p.P.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rafting Möll (Erwachsene)</td>
+                        <td class="price-val">€ 55,00</td>
+                    </tr>
+                    <tr>
+                        <td>Rafting Möll (Kinder unter 12 J.)</td>
+                        <td class="price-val">€ 45,00</td>
+                    </tr>
+                    <tr>
+                        <td>Rafting + Tischgrill (Zuschlag)</td>
+                        <td class="price-val">€ 28,00</td>
+                    </tr>
+                    <tr>
+                        <td>Miniraft / Outside Obervellach-Kolbnitz</td>
+                        <td class="price-val">€ 55,00</td>
+                    </tr>
+                    <tr>
+                        <td>Rafting Isel (Extrem, ab 6 Pers.)</td>
+                        <td class="price-val">€ 95,00</td>
+                    </tr>
+                    <tr>
+                        <td>Canyoning Easy (3-4 Std.)</td>
+                        <td class="price-val">€ 59,00</td>
+                    </tr>
+                    <tr>
+                        <td>Canyoning Sportiv Wunzenschlucht (4 Std. + HS Training)</td>
+                        <td class="price-val">€ 91,00</td>
+                    </tr>
+                    <tr>
+                        <td>Canyoning Adrenalin Tour Wöllaschlucht (5 Std. + HS)</td>
+                        <td class="price-val">€ 95,00</td>
+                    </tr>
+                    <tr>
+                        <td>Hochseilgarten + Teambildung (3 Std.)</td>
+                        <td class="price-val">€ 40,00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="note">Kartenzahlung ist bei uns leider nicht möglich.</p>
+        </div>
+
+        <div class="price-section">
+            <h2>Camping (Pro Nacht)</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Kategorie</th>
+                        <th style="text-align: right;">Preis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Erwachsener</td>
+                        <td class="price-val">€ 8,90</td>
+                    </tr>
+                    <tr>
+                        <td>Kinder (7-16 Jahre)</td>
+                        <td class="price-val">€ 6,90</td>
+                    </tr>
+                    <tr>
+                        <td>Kinder (bis 7 Jahre)</td>
+                        <td class="price-val">€ 5,50</td>
+                    </tr>
+                    <tr>
+                        <td>Wohnwagen/Wohnmobile bis 5,50m</td>
+                        <td class="price-val">€ 5,90</td>
+                    </tr>
+                    <tr>
+                        <td>Wohnwagen/Wohnmobile ab 7,50m</td>
+                        <td class="price-val">€ 7,90</td>
+                    </tr>
+                    <tr>
+                        <td>Familienzelt (>4 Personen)</td>
+                        <td class="price-val">€ 7,00</td>
+                    </tr>
+                    <tr>
+                        <td>Nächtigung/Ortstaxe p.P./Tag ab 16 LJ</td>
+                        <td class="price-val">€ 4,50</td>
+                    </tr>
+                    <tr>
+                        <td>Strom pro Nacht</td>
+                        <td class="price-val">€ 3,90</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="price-section">
+            <h2>Pakete & Specials</h2>
+            <div class="packages">
+                <div class="package-card">
+                    <h3>Aktivwochenende</h3>
+                    <p>2 Übernachtungen mit Halbpension, Rafting auf der Möll, Canyoning, Lagerfeuer, Motorikpark & Driving Range.</p>
+                    <div class="package-price">ab € 235,00</div>
+                    <a href="index.html#kontakt" class="btn" style="padding: 0.8rem 1.5rem; font-size: 0.8rem;">Anfragen</a>
+                </div>
+                
+                <div class="package-card">
+                    <h3>Schulsportwoche</h3>
+                    <p>4 Übernachtungen mit Vollpension. Inklusive Rafting, Canyoning, Hochseilgarten, Motorikpark und vielen weiteren Aktivitäten.</p>
+                    <div class="package-price">ab € 315,00</div>
+                    <a href="schulsport.html" class="btn" style="padding: 0.8rem 1.5rem; font-size: 0.8rem;">Details ansehen</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer id="kontakt">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 2px;">Sport<span>erlebnis</span></h4>
+                <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Dabei sein beim Frei sein! Ihr Familienbetrieb seit 1982 in Kärnten.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html">Unterkünfte & Camping</a></li>
+                    <li><a href="restaurant.html">Restaurant & Bar</a></li>
+                    <li><a href="schulsport.html">Schulsport</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li>Aktiv-Sport-Erlebnis-Camp Pristavec</li>
+                    <li>9821 Obervellach 175, Austria</li>
+                    <li>Tel: +43 4782 / 2727</li>
+                    <li>Email: info@sporterlebnis.at</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten. Design Konzept "Naturkraft".
+        </div>
+    </footer>
+</body>
+</html>

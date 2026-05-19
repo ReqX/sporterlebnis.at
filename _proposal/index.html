@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<!--
+  Design Proposal Comparison Matrix — sporterlebnis.at Rebuild
+  6 design directions × 6 main pages = 36 mockups
+  Each style is a complete design system with consistent navbar, footer, colors, and typography.
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Proposals — sporterlebnis.at Neubau</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface-hover: #252525;
+      --border: #2a2a2a;
+      --text: #d4d4d4;
+      --text-muted: #777;
+      --text-bright: #eee;
+      --accent: #4a9eff;
+      --accent-soft: rgba(74, 158, 255, 0.1);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ─── Header ─── */
+    header {
+      padding: 56px 40px 36px;
+      max-width: 1400px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    header .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    header p {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 700px;
+      line-height: 1.7;
+    }
+    header .stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    header .stat {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    header .stat strong {
+      color: var(--text-bright);
+      font-size: 22px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ─── Comparison Matrix ─── */
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 40px 60px;
+    }
+
+    .matrix-hint {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .matrix-hint svg { opacity: 0.5; }
+
+    .style-row {
+      margin-bottom: 40px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    /* Style header */
+    .style-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .style-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.08);
+      min-width: 40px;
+    }
+    .style-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      flex: 1;
+      min-width: 140px;
+    }
+    .style-narrative {
+      font-size: 13px;
+      color: var(--text-muted);
+      flex: 2;
+      min-width: 280px;
+      line-height: 1.6;
+    }
+    .style-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .style-swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+    .style-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Page grid */
+    .page-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .page-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 12px;
+      background: var(--surface);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .page-link:hover {
+      background: var(--surface-hover);
+      transform: translateY(-2px);
+    }
+    .page-link .page-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+    .page-link .page-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .page-link .page-file {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+    }
+    .page-link .page-arrow {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      font-size: 14px;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .page-link:hover .page-arrow { opacity: 1; }
+
+    /* ─── Footer ─── */
+    footer {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 28px 40px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .page-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      header, main, footer { padding-left: 20px; padding-right: 20px; }
+      .page-grid { grid-template-columns: repeat(2, 1fr); }
+      .style-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .style-narrative { min-width: unset; }
+    }
+    @media (max-width: 480px) {
+      .page-grid { grid-template-columns: repeat(2, 1fr); }
+      .page-link { padding: 20px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="label">Design Proposals — Vergleichsmatrix</div>
+    <h1>sporterlebnis.at<br>8 Stile × 6 Seiten</h1>
+    <p>
+      Acht eigenständige Design-Systeme, jeweils angewendet auf alle Hauptseiten der neuen Website.
+      Jeder Stil bietet eine konsistente visuelle Sprache durch Navigation, Typografie, Farben und Komponenten.
+    </p>
+    <div class="stats">
+      <div class="stat"><strong>8</strong> Design-Stile</div>
+      <div class="stat"><strong>6</strong> Seiten pro Stil</div>
+      <div class="stat"><strong>48</strong> Mockups gesamt</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="matrix-hint">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 110 16A8 8 0 018 0zm1 11H7v-2h2v2zm0-4H7V4h2v3z"/></svg>
+      Klicke auf eine Seite, um das Mockup im Browser zu öffnen. Vergleiche denselben Seitentyp über alle Stile hinweg.
+    </div>
+
+    <!-- ═══ 01 SONNENBRAND ═══ -->
+    <div class="style-row">
+      <div class="style-header">
+        <span class="style-number">01</span>
+        <span class="style-name">Sonnenbrand</span>
+        <p class="style-narrative">
+          Vom Logo abgeleitet: Sonnengelb und maritimes Blau mit wellenförmigen SVG-Trennern. Abgerundete Typografie und kreisrunde Elemente spiegeln den familiären Charakter des Camps wider. Nunito. Spielerisch und erkennbar.
+        </p>
+        <div class="style-meta">
+          <span class="style-swatch" style="background:#FFD700"></span>
+          <span class="style-swatch" style="background:#003366"></span>
+          <span class="style-swatch" style="background:#87CEEB"></span>
+          <span class="style-swatch" style="background:#fff"></span>
+          <span class="style-tag">Logo-DNA</span>
+          <span class="style-tag">Familien</span>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="01-sonnenbrand/index.html" class="page-link">
+          <span class="page-icon">🏔️</span>
+          <span class="page-label">Homepage</span>
+          <span class="page-file">index.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="01-sonnenbrand/rafting.html" class="page-link">
+          <span class="page-icon">🚣</span>
+          <span class="page-label">Rafting</span>
+          <span class="page-file">rafting.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="01-sonnenbrand/camping.html" class="page-link">
+          <span class="page-icon">⛺</span>
+          <span class="page-label">Camping</span>
+          <span class="page-file">camping.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="01-sonnenbrand/preise.html" class="page-link">
+          <span class="page-icon">💶</span>
+          <span class="page-label">Preise</span>
+          <span class="page-file">preise.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="01-sonnenbrand/schulsport.html" class="page-link">
+          <span class="page-icon">🏫</span>
+          <span class="page-label">Schulsport</span>
+          <span class="page-file">schulsport.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="01-sonnenbrand/restaurant.html" class="page-link">
+          <span class="page-icon">🍽️</span>
+          <span class="page-label">Restaurant</span>
+          <span class="page-file">restaurant.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══ 02 MODERNISIERT ═══ -->
+    <div class="style-row">
+      <div class="style-header">
+        <span class="style-number">02</span>
+        <span class="style-name">Modernisiert</span>
+        <p class="style-narrative">
+          Originalgetreue Modernisierung: Die bestehende Site in 2026 — selbe Struktur, echte Daten und Bilder, aber responsiv und zeitgemäß. Als Referenz für den Vergleich mit den anderen Stilrichtungen.
+        </p>
+        <div class="style-meta">
+          <span class="style-swatch" style="background:#3b7a3b"></span>
+          <span class="style-swatch" style="background:#fff"></span>
+          <span class="style-swatch" style="background:#ff6600"></span>
+          <span class="style-swatch" style="background:#222"></span>
+          <span class="style-tag">Originalgetreu</span>
+          <span class="style-tag">Responsive</span>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="02-modern/index.html" class="page-link">
+          <span class="page-icon">🏔️</span>
+          <span class="page-label">Homepage</span>
+          <span class="page-file">index.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="02-modern/rafting.html" class="page-link">
+          <span class="page-icon">🚣</span>
+          <span class="page-label">Rafting</span>
+          <span class="page-file">rafting.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="02-modern/camping.html" class="page-link">
+          <span class="page-icon">⛺</span>
+          <span class="page-label">Camping</span>
+          <span class="page-file">camping.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="02-modern/preise.html" class="page-link">
+          <span class="page-icon">💶</span>
+          <span class="page-label">Preise</span>
+          <span class="page-file">preise.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="02-modern/schulsport.html" class="page-link">
+          <span class="page-icon">🏫</span>
+          <span class="page-label">Schulsport</span>
+          <span class="page-file">schulsport.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="02-modern/restaurant.html" class="page-link">
+          <span class="page-icon">🍽️</span>
+          <span class="page-label">Restaurant</span>
+          <span class="page-file">restaurant.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══ 03 ALPENFEUER ═══ -->
+    <div class="style-row">
+      <div class="style-header">
+        <span class="style-number">03</span>
+        <span class="style-name">Alpenfeuer</span>
+        <p class="style-narrative">
+          Warm, rustikal und einladend. Erdtöne und Holz-Texturen schaffen die Gemütlichkeit einer Almhütte am Lagerfeuer. Fraunces + Nunito.
+        </p>
+        <div class="style-meta">
+          <span class="style-swatch" style="background:#cc5500"></span>
+          <span class="style-swatch" style="background:#a0522d"></span>
+          <span class="style-swatch" style="background:#faf0e6"></span>
+          <span class="style-swatch" style="background:#8b4513"></span>
+          <span class="style-tag">Rustikal</span>
+          <span class="style-tag">Warm</span>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="03-alpenfeuer/index.html" class="page-link">
+          <span class="page-icon">🏔️</span>
+          <span class="page-label">Homepage</span>
+          <span class="page-file">index.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="03-alpenfeuer/rafting.html" class="page-link">
+          <span class="page-icon">🚣</span>
+          <span class="page-label">Rafting</span>
+          <span class="page-file">rafting.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="03-alpenfeuer/camping.html" class="page-link">
+          <span class="page-icon">⛺</span>
+          <span class="page-label">Camping</span>
+          <span class="page-file">camping.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="03-alpenfeuer/preise.html" class="page-link">
+          <span class="page-icon">💶</span>
+          <span class="page-label">Preise</span>
+          <span class="page-file">preise.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="03-alpenfeuer/schulsport.html" class="page-link">
+          <span class="page-icon">🏫</span>
+          <span class="page-label">Schulsport</span>
+          <span class="page-file">schulsport.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="03-alpenfeuer/restaurant.html" class="page-link">
+          <span class="page-icon">🍽️</span>
+          <span class="page-label">Restaurant</span>
+          <span class="page-file">restaurant.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══ 04 GIPFEL ═══ -->
+    <div class="style-row">
+      <div class="style-header">
+        <span class="style-number">04</span>
+        <span class="style-name">Gipfel</span>
+        <p class="style-narrative">
+          Minimalistisch und hochwertig. Schwarz-Weiß-Kontraste mit einem einzelnen Gletscherblau-Akzent. Schweizer Präzision trifft alpine Dramatik. Inter.
+        </p>
+        <div class="style-meta">
+          <span class="style-swatch" style="background:#1e293b"></span>
+          <span class="style-swatch" style="background:#f8fafc"></span>
+          <span class="style-swatch" style="background:#2563eb"></span>
+          <span class="style-swatch" style="background:#64748b"></span>
+          <span class="style-tag">Minimal</span>
+          <span class="style-tag">Swiss</span>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="04-gipfel/index.html" class="page-link">
+          <span class="page-icon">🏔️</span>
+          <span class="page-label">Homepage</span>
+          <span class="page-file">index.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="04-gipfel/rafting.html" class="page-link">
+          <span class="page-icon">🚣</span>
+          <span class="page-label">Rafting</span>
+          <span class="page-file">rafting.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="04-gipfel/camping.html" class="page-link">
+          <span class="page-icon">⛺</span>
+          <span class="page-label">Camping</span>
+          <span class="page-file">camping.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="04-gipfel/preise.html" class="page-link">
+          <span class="page-icon">💶</span>
+          <span class="page-label">Preise</span>
+          <span class="page-file">preise.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="04-gipfel/schulsport.html" class="page-link">
+          <span class="page-icon">🏫</span>
+          <span class="page-label">Schulsport</span>
+          <span class="page-file">schulsport.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="04-gipfel/restaurant.html" class="page-link">
+          <span class="page-icon">🍽️</span>
+          <span class="page-label">Restaurant</span>
+          <span class="page-file">restaurant.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══ 05 WIESENGRUND ═══ -->
+    <div class="style-row">
+      <div class="style-header">
+        <span class="style-number">05</span>
+        <span class="style-name">Wiesengrund</span>
+        <p class="style-narrative">
+          Organisch und familienfreundlich. Runde Formen, sanfte Wellen und Naturtöne vermitteln Sicherheit und Naturnähe. Fredoka + Nunito.
+        </p>
+        <div class="style-meta">
+          <span class="style-swatch" style="background:#4a7c59"></span>
+          <span class="style-swatch" style="background:#8fbc8f"></span>
+          <span class="style-swatch" style="background:#d2b48c"></span>
+          <span class="style-swatch" style="background:#fafafa"></span>
+          <span class="style-tag">Organisch</span>
+          <span class="style-tag">Familien</span>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="05-wiesengrund/index.html" class="page-link">
+          <span class="page-icon">🏔️</span>
+          <span class="page-label">Homepage</span>
+          <span class="page-file">index.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="05-wiesengrund/rafting.html" class="page-link">
+          <span class="page-icon">🚣</span>
+          <span class="page-label">Rafting</span>
+          <span class="page-file">rafting.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="05-wiesengrund/camping.html" class="page-link">
+          <span class="page-icon">⛺</span>
+          <span class="page-label">Camping</span>
+          <span class="page-file">camping.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="05-wiesengrund/preise.html" class="page-link">
+          <span class="page-icon">💶</span>
+          <span class="page-label">Preise</span>
+          <span class="page-file">preise.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="05-wiesengrund/schulsport.html" class="page-link">
+          <span class="page-icon">🏫</span>
+          <span class="page-label">Schulsport</span>
+          <span class="page-file">schulsport.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="05-wiesengrund/restaurant.html" class="page-link">
+          <span class="page-icon">🍽️</span>
+          <span class="page-label">Restaurant</span>
+          <span class="page-file">restaurant.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══ 06 HELAU ═══ -->
+    <div class="style-row">
+      <div class="style-header">
+        <span class="style-number">06</span>
+        <span class="style-name">Helau</span>
+        <p class="style-narrative">
+          Leicht, frisch und modern. Helles Layout mit pastoralen Akzenten in Korall und Salbei. Alpine Leichtigkeit trifft Schweizer Ästhetik. Syne + Inter.
+        </p>
+        <div class="style-meta">
+          <span class="style-swatch" style="background:#f5f0eb"></span>
+          <span class="style-swatch" style="background:#e8927c"></span>
+          <span class="style-swatch" style="background:#a8b5a0"></span>
+          <span class="style-swatch" style="background:#2d3436"></span>
+          <span class="style-tag">Hell</span>
+          <span class="style-tag">Editorial</span>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="06-helau/index.html" class="page-link">
+          <span class="page-icon">🏔️</span>
+          <span class="page-label">Homepage</span>
+          <span class="page-file">index.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="06-helau/rafting.html" class="page-link">
+          <span class="page-icon">🚣</span>
+          <span class="page-label">Rafting</span>
+          <span class="page-file">rafting.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="06-helau/camping.html" class="page-link">
+          <span class="page-icon">⛺</span>
+          <span class="page-label">Camping</span>
+          <span class="page-file">camping.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="06-helau/preise.html" class="page-link">
+          <span class="page-icon">💶</span>
+          <span class="page-label">Preise</span>
+          <span class="page-file">preise.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="06-helau/schulsport.html" class="page-link">
+          <span class="page-icon">🏫</span>
+          <span class="page-label">Schulsport</span>
+          <span class="page-file">schulsport.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="06-helau/restaurant.html" class="page-link">
+          <span class="page-icon">🍽️</span>
+          <span class="page-label">Restaurant</span>
+          <span class="page-file">restaurant.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══ 07 NATURKRAFT ═══ -->
+    <div class="style-row">
+      <div class="style-header">
+        <span class="style-number">07</span>
+        <span class="style-name">Naturkraft</span>
+        <p class="style-narrative">
+          Dunkel, dramatisch und naturverbunden. Tiefes Waldgrün und Gold-Akzente schaffen eine immersive Premium-Atmosphäre. Cinzel + Montserrat.
+        </p>
+        <div class="style-meta">
+          <span class="style-swatch" style="background:#1a3a2a"></span>
+          <span class="style-swatch" style="background:#0d1f15"></span>
+          <span class="style-swatch" style="background:#c4a24c"></span>
+          <span class="style-swatch" style="background:#fff"></span>
+          <span class="style-tag">Dunkel</span>
+          <span class="style-tag">Premium</span>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="07-naturkraft/index.html" class="page-link">
+          <span class="page-icon">🏔️</span>
+          <span class="page-label">Homepage</span>
+          <span class="page-file">index.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="07-naturkraft/rafting.html" class="page-link">
+          <span class="page-icon">🚣</span>
+          <span class="page-label">Rafting</span>
+          <span class="page-file">rafting.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="07-naturkraft/camping.html" class="page-link">
+          <span class="page-icon">⛺</span>
+          <span class="page-label">Camping</span>
+          <span class="page-file">camping.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="07-naturkraft/preise.html" class="page-link">
+          <span class="page-icon">💶</span>
+          <span class="page-label">Preise</span>
+          <span class="page-file">preise.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="07-naturkraft/schulsport.html" class="page-link">
+          <span class="page-icon">🏫</span>
+          <span class="page-label">Schulsport</span>
+          <span class="page-file">schulsport.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="07-naturkraft/restaurant.html" class="page-link">
+          <span class="page-icon">🍽️</span>
+          <span class="page-label">Restaurant</span>
+          <span class="page-file">restaurant.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══ 08 WILDWASSER ═══ -->
+    <div class="style-row">
+      <div class="style-header">
+        <span class="style-number">08</span>
+        <span class="style-name">Wildwasser</span>
+        <p class="style-narrative">
+          Dynamisch und aktionsgeladen. Schräge Linien, kräftiges Blau und Safety-Orange spiegeln die Energie des Wildwassers wider. Bebas Neue + Roboto.
+        </p>
+        <div class="style-meta">
+          <span class="style-swatch" style="background:#003366"></span>
+          <span class="style-swatch" style="background:#0066aa"></span>
+          <span class="style-swatch" style="background:#ff6600"></span>
+          <span class="style-swatch" style="background:#fff"></span>
+          <span class="style-tag">Dynamisch</span>
+          <span class="style-tag">Diagonal</span>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="08-wildwasser/index.html" class="page-link">
+          <span class="page-icon">🏔️</span>
+          <span class="page-label">Homepage</span>
+          <span class="page-file">index.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="08-wildwasser/rafting.html" class="page-link">
+          <span class="page-icon">🚣</span>
+          <span class="page-label">Rafting</span>
+          <span class="page-file">rafting.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="08-wildwasser/camping.html" class="page-link">
+          <span class="page-icon">⛺</span>
+          <span class="page-label">Camping</span>
+          <span class="page-file">camping.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="08-wildwasser/preise.html" class="page-link">
+          <span class="page-icon">💶</span>
+          <span class="page-label">Preise</span>
+          <span class="page-file">preise.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="08-wildwasser/schulsport.html" class="page-link">
+          <span class="page-icon">🏫</span>
+          <span class="page-label">Schulsport</span>
+          <span class="page-file">schulsport.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+        <a href="08-wildwasser/restaurant.html" class="page-link">
+          <span class="page-icon">🍽️</span>
+          <span class="page-label">Restaurant</span>
+          <span class="page-file">restaurant.html</span>
+          <span class="page-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>Aktiv-Sport-Erlebnis-Camp Pristavec · Obervellach 175 · 9821 Kärnten · <a href="mailto:info@sporterlebnis.at">info@sporterlebnis.at</a></span>
+    <span>8 Stile · 48 Mockups · Mai 2026</span>
+  </footer>
+
+</body>
+</html>

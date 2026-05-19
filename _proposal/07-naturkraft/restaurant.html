@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant & Bar | Sporterlebnis Pristavec | Naturkraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #090e0b;
+            --color-surface: #121c17;
+            --color-primary: #1a3a2a;
+            --color-primary-light: #2b5c43;
+            --color-accent: #c4a24c;
+            --color-text: #e8edea;
+            --color-text-muted: #a4b3ab;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            transition: background 0.3s ease;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--color-accent);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        nav a.active {
+            color: var(--color-accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid:hover {
+            background: #d4b566;
+            color: var(--color-bg);
+            border-color: #d4b566;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2500&auto=format&fit=crop') center/cover no-repeat;
+            filter: brightness(0.4) contrast(1.1);
+            z-index: -1;
+            transform: scale(1.05);
+            animation: slowZoom 20s ease-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* Content Grid */
+        .page-content {
+            padding: 8rem 5%;
+            background: var(--color-bg);
+        }
+
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .text-block h2 {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .text-block p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+        }
+
+        .image-block {
+            position: relative;
+            height: 500px;
+        }
+
+        .image-block img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-block::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            right: -20px;
+            bottom: 20px;
+            border: 1px solid var(--color-accent);
+            z-index: -1;
+        }
+
+        /* Hours & Info */
+        .info-section {
+            background: var(--color-surface);
+            padding: 6rem 5%;
+            border-top: 1px solid rgba(196, 162, 76, 0.1);
+            border-bottom: 1px solid rgba(196, 162, 76, 0.1);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .info-box {
+            padding: 3rem;
+            border: 1px solid rgba(196, 162, 76, 0.2);
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .info-box h3 {
+            color: var(--color-accent);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .info-box h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20%;
+            width: 60%;
+            height: 1px;
+            background: var(--color-accent);
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            margin-bottom: 1.5rem;
+            color: var(--color-text-muted);
+        }
+
+        .hours-list strong {
+            display: block;
+            color: var(--color-text);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050806;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(196, 162, 76, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a {
+            color: var(--color-text-muted);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .content-layout, .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .image-block {
+                order: -1;
+                height: 300px;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Sport<span>erlebnis</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                <li><a href="camping.html">Camping</a></li>
+                <li><a href="schulsport.html">Schulsport</a></li>
+                <li><a href="restaurant.html" class="active">Restaurant</a></li>
+                <li><a href="preise.html">Preise</a></li>
+            </ul>
+        </nav>
+        <a href="#kontakt" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;">Kontakt</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Genuss & Entspannung</h1>
+            <p>Die perfekte Stärkung nach dem Abenteuer</p>
+        </div>
+    </section>
+
+    <section class="page-content">
+        <div class="content-layout">
+            <div class="text-block">
+                <h2>Restaurant mit Bar im neuen Outfit</h2>
+                <p>Genießen Sie nach einem actionreichen Tag auf dem Wasser oder in den Bergen die entspannte Atmosphäre in unserem frisch renovierten Restaurant. Mit viel Holz, warmem Licht und regionaler Gastfreundschaft laden wir Sie zum Verweilen ein.</p>
+                <p>Unser Angebot reicht von Eis Coups am Nachmittag über regionale Kärntner Spezialitäten bis hin zu internationalen Speisen. Regelmäßige Highlights wie unsere Grillfeste, Pizzaabende und Themenabende runden das kulinarische Erlebnis ab.</p>
+                <br>
+                <h3 style="color: var(--color-text); font-family: var(--font-heading); margin-bottom: 1rem;">Veranstaltungen & Eventcatering</h3>
+                <p>Geburtstage, Hochzeiten, Firmenfeiern oder Taufen – wir sind der richtige Ansprechpartner für Ihr Event. Wir bieten ein beheizbares Zelt für kleine Veranstaltungen (40 Sitzplätze) und ein großes Festzelt für bis zu 150 Gäste.</p>
+                <p>Du kümmerst dich um deine Gäste und wir erledigen den Rest. Vertrau uns, du wirst als Gastgeber glänzen.</p>
+            </div>
+            
+            <div class="image-block">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1200&auto=format&fit=crop" alt="Restaurant Atmosphäre">
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-grid">
+            <div class="info-box">
+                <h3>Öffnungszeiten</h3>
+                <p style="color: var(--color-accent); font-style: italic; margin-bottom: 2rem;">Täglich von 1. Mai bis 20. September geöffnet</p>
+                
+                <ul class="hours-list">
+                    <li>
+                        <strong>Vorsaison</strong>
+                        11:30 - 13:30 Uhr<br>
+                        17:30 - 19:30 Uhr
+                    </li>
+                    <li>
+                        <strong>Hauptsaison</strong>
+                        11:30 - 14:00 Uhr<br>
+                        17:30 - 20:00 Uhr
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="info-box" style="display: flex; flex-direction: column; justify-content: center;">
+                <h3>Event Planen?</h3>
+                <p style="color: var(--color-text-muted); margin-bottom: 2rem;">Sichern Sie sich unser Festzelt für Ihre nächste Feier. Wir erstellen Ihnen gerne ein maßgeschneidertes Catering-Angebot inklusive passender Getränkeauswahl.</p>
+                <a href="#kontakt" class="btn btn-solid">Tisch / Event Reservieren</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontakt">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 2px;">Sport<span>erlebnis</span></h4>
+                <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Dabei sein beim Frei sein! Ihr Familienbetrieb seit 1982 in Kärnten.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html">Unterkünfte & Camping</a></li>
+                    <li><a href="restaurant.html">Restaurant & Bar</a></li>
+                    <li><a href="schulsport.html">Schulsport</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li>Aktiv-Sport-Erlebnis-Camp Pristavec</li>
+                    <li>9821 Obervellach 175, Austria</li>
+                    <li>Tel: +43 4782 / 2727</li>
+                    <li>Email: info@sporterlebnis.at</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten. Design Konzept "Naturkraft".
+        </div>
+    </footer>
+</body>
+</html>

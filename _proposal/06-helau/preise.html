@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preisliste | Aktiv-Sport-Erlebnis-Camp Pristavec</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream: #f5f0eb;
+            --coral: #e8927c;
+            --sage: #a8b5a0;
+            --dark: #2d2d2d;
+            --gray-light: #eae5e0;
+            --text-light: #6a6a6a;
+            --white: #ffffff;
+            --transition: all 0.4s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--cream);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 32px 0;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(245,240,235,1) 0%, rgba(245,240,235,0) 100%);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .logo span {
+            color: var(--coral);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            font-family: 'Syne', sans-serif;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 5rem;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 400px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--dark);
+            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 18px 40px;
+            border-radius: 0;
+            transition: var(--transition);
+            border: 1px solid var(--dark);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--dark);
+        }
+
+        .btn-sage {
+            background: var(--sage);
+            border-color: var(--sage);
+        }
+
+        .btn-sage:hover {
+            background: transparent;
+            color: var(--sage);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+            border-radius: 200px 0 0 0;
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: 40px;
+            left: -40px;
+            background: var(--coral);
+            color: var(--white);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 1.2;
+            padding: 20px;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Pricing Table Styling */
+        .pricing-section {
+            padding: 80px 0;
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background: var(--white);
+        }
+
+        .price-table th, .price-table td {
+            padding: 20px 32px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .price-table th {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            background: var(--sage);
+            color: var(--white);
+        }
+        
+        .price-table.bg-coral th {
+            background: var(--coral);
+        }
+
+        .price-table td {
+            font-size: 1.1rem;
+        }
+
+        .price-table td:last-child {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 80px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card.bg-sage {
+            background: var(--sage);
+            color: var(--white);
+        }
+
+        .info-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding: 16px 0;
+            font-size: 1.1rem;
+        }
+        
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Events & Catering */
+        .events-section {
+            padding: 120px 0;
+            background: var(--coral);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .events-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .events-content h2 {
+            font-size: 4rem;
+            margin-bottom: 32px;
+        }
+
+        .events-content p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--coral);
+            border-color: var(--white);
+        }
+
+        .btn-white:hover {
+            background: transparent;
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 100px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        footer h4 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+            color: var(--sage);
+        }
+
+        footer p, footer a {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 12px;
+            display: block;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid, .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-text h1 {
+                font-size: 4rem;
+            }
+            .hero-image img {
+                height: 500px;
+                border-radius: 100px 0 0 0;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-btn {
+                display: block;
+            }
+            .hero {
+                padding-top: 120px;
+            }
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            .hero-badge {
+                width: 120px;
+                height: 120px;
+                font-size: 0.9rem;
+                left: -10px;
+                bottom: -20px;
+            }
+            .info-card {
+                padding: 40px;
+            }
+            .events-content h2 {
+                font-size: 2.5rem;
+            }
+            .price-table th, .price-table td {
+                padding: 12px 16px;
+                font-size: 1rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sporterlebnis <span>Preise</span></a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="rafting.html">Rafting</a>
+                <a href="camping.html">Camping</a>
+                <a href="preise.html" class="active">Preise</a>
+                <a href="schulsport.html">Schulsport</a>
+                <a href="restaurant.html">Restaurant</a>
+            </nav>
+            <button class="menu-btn">Menu</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero container">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <h1>Preisliste<br>2026</h1>
+                <p>Transparent und fair. Alle Preise für Camping, Unterkünfte und sportliche Aktivitäten auf einen Blick.</p>
+                <div style="margin-top: 30px; font-weight: 500; color: var(--coral);">Hinweis: Kartenzahlung ist bei uns nicht möglich.</div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1502307100811-6bdc0981a85b?w=1200&h=1600&fit=crop" alt="Equipment">
+                <div class="hero-badge">Saison<br>2026<br>geöffnet</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Tables -->
+    <section class="pricing-section container">
+        <h2 style="font-size: 3rem; margin-bottom: 40px;">Camping Platzgebühren</h2>
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>Kategorie</th>
+                    <th style="text-align: right;">Preis pro Nacht</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Erwachsener</td><td>€ 8,90</td></tr>
+                <tr><td>Kinder bis 1 Jahr</td><td>FREI</td></tr>
+                <tr><td>Kinder bis 7 Jahren</td><td>€ 5,50</td></tr>
+                <tr><td>Kinder 7-16 Jahren</td><td>€ 6,90</td></tr>
+                <tr><td>Wohnwagen/Wohnmobile bis 5,50m</td><td>€ 5,90</td></tr>
+                <tr><td>Wohnwagen/Wohnmobile bis 7,50m</td><td>€ 6,90</td></tr>
+                <tr><td>Wohnwagen/Wohnmobile ab 7,50m</td><td>€ 7,90</td></tr>
+                <tr><td>Auto beim Zelt</td><td>€ 3,50</td></tr>
+                <tr><td>Auto am Parkplatz</td><td>FREI</td></tr>
+                <tr><td>Strom pro Nacht</td><td>€ 3,90</td></tr>
+                <tr><td>Nächtigung/Ortstaxe p.P./Tag ab 16 LJ</td><td>€ 4,50</td></tr>
+                <tr><td>Hund</td><td>€ 3,50</td></tr>
+                <tr><td>Zelt (2 Mann)</td><td>€ 4,00</td></tr>
+                <tr><td>Familienzelt (>2 Personen)</td><td>€ 6,00</td></tr>
+                <tr><td>Familienzelt (>4 Personen)</td><td>€ 7,00</td></tr>
+                <tr><td>Frühstück im Restaurant p.P.</td><td>€ 14,50</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Info Grid -->
+    <section class="info-section container" style="padding-top: 0;">
+        <h2 style="font-size: 3rem; margin-bottom: 40px;">Wassersport & Action</h2>
+        <table class="price-table bg-coral">
+            <thead>
+                <tr>
+                    <th>Aktivität</th>
+                    <th style="text-align: right;">Preis pro Person</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Rafting Möll (Erwachsene)</td><td>€ 55,00</td></tr>
+                <tr><td>Rafting Möll (Kinder -12 J.)</td><td>€ 45,00</td></tr>
+                <tr><td>Rafting + Tischgrill (Zuschlag)</td><td>€ 28,00</td></tr>
+                <tr><td>Miniraft/Outside Obervellach-Kolbnitz</td><td>€ 55,00</td></tr>
+                <tr><td>Wildwasser Arena (Mini Raft + Riverbug, 3 Runs)</td><td>€ 75,00</td></tr>
+                <tr><td>Rafting Isel (Extrem, ab 6 Pers.)</td><td>€ 95,00</td></tr>
+                <tr><td>Kajak inkl. Ausrüstung</td><td>€ 50,00</td></tr>
+                <tr><td>Riverbugging</td><td>€ 55,00</td></tr>
+                <tr><td>Canyoning Easy (3-4 Std.)</td><td>€ 59,00</td></tr>
+                <tr><td>Canyoning Sportiv Wunzenschlucht</td><td>€ 91,00</td></tr>
+                <tr><td>Canyoning Adrenalin Tour Wöllaschlucht</td><td>€ 95,00</td></tr>
+                <tr><td>Hochseilgarten + Kletterwand (ab 4 Pers.)</td><td>€ 25,00</td></tr>
+                <tr><td>Motorikpark mit Trainer (Kinder / mind. 3 Std.)</td><td>€ 12,00</td></tr>
+                <tr><td>Motorikpark mit Trainer (Erwachsene / mind. 3 Std.)</td><td>€ 25,00</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Info Section (Storno etc) -->
+    <section class="info-section container">
+        <div class="info-grid">
+            <div class="info-card bg-sage">
+                <h3>Jugendcamp</h3>
+                <p style="margin-bottom: 32px; font-weight: 500;">Preise für Jugend & Abenteuercamp</p>
+                
+                <h4 style="font-size: 1.2rem; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 8px;">Übernachtung (Erwachsene / Kinder)</h4>
+                <ul class="hours-list" style="margin-bottom: 32px;">
+                    <li><span>Mit Frühstück</span> <span>€ 36,00 / € 27,00</span></li>
+                    <li><span>Mit Halbpension</span> <span>€ 47,00 / € 37,00</span></li>
+                    <li><span>Mit Vollpension</span> <span>€ 57,00 / € 47,00</span></li>
+                </ul>
+
+                <h4 style="font-size: 1.2rem; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 8px;">Pakete</h4>
+                <ul class="hours-list">
+                    <li><span>Aktivwochenende</span> <span>ab € 235,00</span></li>
+                    <li><span>Schulsportwoche (HP)</span> <span>€ 278,00</span></li>
+                    <li><span>Schulsportwoche (VP)</span> <span>€ 315,00</span></li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Stornierungen</h3>
+                <p style="color: var(--text-light); margin-bottom: 32px;">Wichtige Informationen zu deinen Buchungen.</p>
+                
+                <ul class="hours-list" style="margin-bottom: 32px;">
+                    <li><span style="font-weight: 500;">8 Wochen vor Reiseantritt</span> <span>20%</span></li>
+                    <li><span style="font-weight: 500;">4 Wochen vor Reiseantritt</span> <span>50%</span></li>
+                </ul>
+
+                <p style="color: var(--text-light); font-size: 0.95rem;">Bei verspäteter Ankunft und vorzeitiger Abreise wird der volle Preis des reservierten Zeitraums in Rechnung gestellt.</p>
+                
+                <div style="margin-top: 60px;">
+                    <a href="mailto:info@sporterlebnis.at" class="btn btn-sage">Anfrage senden</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontakt">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">PRISTAVEC<br><span style="color: var(--coral);">CAMP</span></div>
+                    <p>Dabei sein beim Frei sein!<br>Seit 1982.</p>
+                </div>
+                <div>
+                    <h4>Standort</h4>
+                    <p>Aktiv-Sport-Erlebnis-Camp<br>Pristavec</p>
+                    <p>9821 Obervellach 175<br>Kärnten, Österreich</p>
+                </div>
+                <div>
+                    <h4>Kontakt</h4>
+                    <a href="tel:+4347822727">Tel: +43 4782 / 2727</a>
+                    <a href="mailto:info@sporterlebnis.at">info@sporterlebnis.at</a>
+                </div>
+                <div>
+                    <h4>Rechtliches</h4>
+                    <a href="#">Impressum</a>
+                    <a href="#">Datenschutz</a>
+                    <a href="#">AGB</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec.</div>
+                <div>Design Konzept</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple mobile menu toggle
+        document.querySelector('.menu-btn').addEventListener('click', function() {
+            const nav = document.querySelector('.nav-links');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100px';
+                nav.style.left = '0';
+                nav.style.width = '100%';
+                nav.style.background = 'var(--cream)';
+                nav.style.padding = '40px';
+                nav.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>

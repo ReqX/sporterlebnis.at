@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafting & Canyoning | Sporterlebnis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --green-dark: #4a7c59;
+            --green-light: #8fbc8f;
+            --green-bg: #eef5ef;
+            --earth-tan: #d2b48c;
+            --earth-brown: #8b7355;
+            --bg-color: #fcfbfa;
+            --text-dark: #2c3e2e;
+            --text-light: #6b7a6d;
+            --white: #ffffff;
+            --radius-sm: 16px;
+            --radius-md: 32px;
+            --radius-lg: 64px;
+            --shadow: 0 12px 36px rgba(74, 124, 89, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--green-dark);
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        .navbar-wrapper {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            max-width: 1152px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-radius: 100px;
+            padding: 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--earth-brown);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green-dark);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--green-dark);
+            color: var(--white);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 14px 32px;
+            border-radius: 100px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(143, 188, 143, 0.4);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--green-dark);
+            border: 2px solid var(--green-dark);
+        }
+
+        .btn-outline:hover {
+            background: var(--green-dark);
+            color: var(--white);
+            box-shadow: 0 8px 24px rgba(74, 124, 89, 0.2);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--green-dark);
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            padding-top: 140px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, var(--green-bg) 0%, #fff 100%);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: var(--earth-tan);
+            opacity: 0.15;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            z-index: 0;
+            animation: morph 8s ease-in-out infinite alternate;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 span {
+            color: var(--earth-brown);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .two-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .text-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+
+        .text-content p {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--text-light);
+        }
+
+        .image-content img {
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+        }
+
+        /* Facts Box */
+        .facts-box {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 48px;
+            box-shadow: var(--shadow);
+            margin-top: 64px;
+            border: 2px solid var(--green-bg);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .fact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fact-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--green-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--green-dark);
+        }
+
+        .fact-item h4 {
+            font-size: 1.1rem;
+            color: var(--earth-brown);
+            margin: 0;
+        }
+
+        .fact-item p {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+        }
+
+        /* Pricing Section */
+        .wave-wrapper {
+            position: relative;
+        }
+
+        .wave-top {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-bottom: -1px;
+        }
+
+        .wave-bottom {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-top: -1px;
+            transform: rotate(180deg);
+        }
+
+        .pricing-section {
+            background-color: var(--green-dark);
+            color: var(--white);
+            padding: 60px 0 80px;
+        }
+
+        .pricing-section h2 {
+            color: var(--white);
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 40px;
+            color: var(--text-dark);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            color: var(--earth-brown);
+        }
+
+        .price-card p {
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .price-tag {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            line-height: 1;
+            margin-bottom: 24px;
+        }
+        
+        .price-tag span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-light);
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .price-list {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .price-list li {
+            padding-left: 32px;
+            position: relative;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .price-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--white);
+            background: var(--green-light);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 80px 0 40px;
+            border-top-left-radius: var(--radius-lg);
+            border-top-right-radius: var(--radius-lg);
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer h4 {
+            color: var(--green-light);
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .footer p, .footer a {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .footer a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 32px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .two-cols {
+                grid-template-columns: 1fr;
+            }
+            .facts-box {
+                grid-template-columns: 1fr 1fr;
+            }
+            .price-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .navbar .btn {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .facts-box {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--green-dark)"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                Sport<span>erlebnis</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="rafting.html" class="active">Rafting & Canyoning</a>
+                <a href="camping.html">Unterkünfte</a>
+                <a href="preise.html">Preise</a>
+                <a href="schulsport.html">Schulsport</a>
+                <a href="restaurant.html">Restaurant</a>
+            </div>
+            <a href="camping.html#buchen" class="btn">Buchen</a>
+            <button class="menu-toggle">☰</button>
+        </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Rafting auf der <span>Möll</span></h1>
+                <p>Ins Abenteuer einzutauchen mag mit Nässe verbunden sein, doch bleibt es unvergessen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content-section container">
+        <div class="two-cols">
+            <div class="image-content">
+                <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&h=600&fit=crop" alt="Rafting Abenteuer in Kärnten">
+            </div>
+            <div class="text-content">
+                <h2>Ein unvergessliches Erlebnis</h2>
+                <p>Die Angst und Aufregung zu Beginn ist sogleich vergessen, denn bald schon fesselt nur mehr der Augenblick. Die Raftingfahrt wird mitunter zur Sucht: schneller, aufregender, gewagter....</p>
+                <p>Wir starten in unserem Outdoorparadies in Obervellach mit unserer Raftingtour und fahren den schönsten und längsten befahrbaren Teil der Möll bis nach Kolbnitz.</p>
+                <p>Nachdem ihr mit optimaler Wildwasserbekleidung ausgestattet werdet, gibt es eine kurze Einschulung und unsere staatlich geprüften Guides bringen euch sicher durch die Wellen und Stromschnellen.</p>
+                <p>Unterwegs können besonders Mutige von einer 4 Meter hohen Brücke in die Fluten springen oder auf einen Felsen klettern und aus 8 Metern Höhe eintauchen.</p>
+            </div>
+        </div>
+
+        <div class="facts-box">
+            <div class="fact-item">
+                <div class="fact-icon">🌊</div>
+                <h4>Streckenlänge</h4>
+                <p>14 km</p>
+            </div>
+            <div class="fact-item">
+                <div class="fact-icon">⏱️</div>
+                <h4>Dauer</h4>
+                <p>ca. 3 Stunden</p>
+            </div>
+            <div class="fact-item">
+                <div class="fact-icon">📈</div>
+                <h4>Schwierigkeitsgrad</h4>
+                <p>Level 2-3</p>
+            </div>
+            <div class="fact-item">
+                <div class="fact-icon">👶</div>
+                <h4>Mindestalter</h4>
+                <p>Ab 3 Jahren</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <div class="wave-wrapper">
+        <svg class="wave-top" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#4a7c59" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,192C384,192,480,160,576,149.3C672,139,768,149,864,170.7C960,192,1056,224,1152,213.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        
+        <section class="pricing-section">
+            <div class="container">
+                <h2>Tour buchen</h2>
+                
+                <div class="price-grid">
+                    <div class="price-card">
+                        <div>
+                            <h3>Rafting auf der Möll</h3>
+                            <p>Das klassische Erlebnis für Einsteiger und Familien.</p>
+                            <div class="price-tag">€ 49,- <span>/ Person</span></div>
+                            
+                            <ul class="price-list">
+                                <li>14 km Flussstrecke auf der Möll</li>
+                                <li>Komplette Neopren-Ausrüstung</li>
+                                <li>Staatlich geprüfter Guide</li>
+                                <li>Kinder unter 12 Jahren nur € 39,-</li>
+                            </ul>
+                        </div>
+                        <a href="#anfrage" class="btn" style="width: 100%;">Jetzt anfragen</a>
+                    </div>
+                    
+                    <div class="price-card">
+                        <div>
+                            <h3>Rafting & Grill-Paket</h3>
+                            <p>Aufregende Tour mit anschließendem BBQ.</p>
+                            <div class="price-tag">€ 68,- <span>/ Person</span></div>
+                            
+                            <ul class="price-list">
+                                <li>Alle Leistungen der klassischen Tour</li>
+                                <li>Anschließender Raftinggrill / Tischgrill</li>
+                                <li>Viele Grillspezialitäten</li>
+                                <li>Beilagen und frische Salate inklusive</li>
+                            </ul>
+                        </div>
+                        <a href="#anfrage" class="btn" style="width: 100%;">Paket anfragen</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <svg class="wave-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#4a7c59" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,192C384,192,480,160,576,149.3C672,139,768,149,864,170.7C960,192,1056,224,1152,213.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Aktiv-Sport-Erlebnis-Camp<br>Pristavec</h4>
+                    <p>9821 Obervellach 175<br>Kärnten, Österreich</p>
+                    <p>Slogan: "Dabei sein beim Frei sein!"</p>
+                </div>
+                <div>
+                    <h4>Kontakt</h4>
+                    <a href="tel:+4347822727">Tel: +43 4782 / 2727</a>
+                    <a href="mailto:info@sporterlebnis.at">info@sporterlebnis.at</a>
+                </div>
+                <div>
+                    <h4>Schnelllinks</h4>
+                    <a href="index.html">Startseite</a>
+                    <a href="preise.html">Preisliste</a>
+                    <a href="schulsport.html">Schulsport</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            if(navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'rgba(255, 255, 255, 0.95)';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderRadius = '20px';
+                navLinks.style.marginTop = '10px';
+                navLinks.style.boxShadow = 'var(--shadow)';
+            }
+        });
+    </script>
+</body>
+</html>

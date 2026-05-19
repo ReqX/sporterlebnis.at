@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sporterlebnis | Kärnten</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --green-dark: #4a7c59;
+            --green-light: #8fbc8f;
+            --green-bg: #eef5ef;
+            --earth-tan: #d2b48c;
+            --earth-brown: #8b7355;
+            --bg-color: #fcfbfa;
+            --text-dark: #2c3e2e;
+            --text-light: #6b7a6d;
+            --white: #ffffff;
+            --radius-sm: 16px;
+            --radius-md: 32px;
+            --radius-lg: 64px;
+            --shadow: 0 12px 36px rgba(74, 124, 89, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--green-dark);
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        .navbar-wrapper {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            max-width: 1152px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-radius: 100px;
+            padding: 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--earth-brown);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green-dark);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--green-dark);
+            color: var(--white);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 14px 32px;
+            border-radius: 100px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(143, 188, 143, 0.4);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--green-dark);
+            border: 2px solid var(--green-dark);
+        }
+
+        .btn-outline:hover {
+            background: var(--green-dark);
+            color: var(--white);
+            box-shadow: 0 8px 24px rgba(74, 124, 89, 0.2);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--green-dark);
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            padding-top: 140px;
+            padding-bottom: 120px;
+            background: linear-gradient(135deg, var(--green-bg) 0%, #fff 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 400px;
+            height: 400px;
+            background: var(--earth-tan);
+            opacity: 0.15;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            z-index: 0;
+            animation: morph 8s ease-in-out infinite alternate;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: var(--green-light);
+            opacity: 0.2;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            z-index: 0;
+            animation: morph 10s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(0deg); }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(10deg); }
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 span {
+            color: var(--earth-brown);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            border-radius: var(--radius-md) var(--radius-lg) var(--radius-md) var(--radius-sm);
+            box-shadow: var(--shadow);
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+
+        /* Intro */
+        .intro-section {
+            padding: 80px 0;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        /* Activities / Highlights */
+        .activities-section {
+            padding: 40px 0 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 16px;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .activity-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--green-light);
+            box-shadow: 0 20px 40px rgba(74, 124, 89, 0.15);
+        }
+
+        .activity-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .activity-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .activity-card:hover .activity-img img {
+            transform: scale(1.05);
+        }
+
+        .activity-content {
+            padding: 32px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .activity-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .activity-content p {
+            color: var(--text-light);
+            flex-grow: 1;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+        
+        .activity-content .btn-outline {
+            align-self: flex-start;
+            padding: 10px 24px;
+            font-size: 1rem;
+        }
+
+        /* Wave sections */
+        .wave-wrapper {
+            position: relative;
+        }
+
+        .wave-top {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-bottom: -1px;
+        }
+
+        .wave-bottom {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-top: -1px;
+            transform: rotate(180deg);
+        }
+
+        .color-section {
+            background-color: var(--green-bg);
+            padding: 60px 0 80px;
+        }
+
+        .color-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 48px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .news-item {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .news-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--earth-tan);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .news-content h4 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: var(--earth-brown);
+        }
+
+        .news-content p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 80px 0 40px;
+            border-top-left-radius: var(--radius-lg);
+            border-top-right-radius: var(--radius-lg);
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer h4 {
+            color: var(--green-light);
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .footer p, .footer a {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .footer a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 32px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin: 0 auto 32px;
+            }
+            .hero-content div {
+                justify-content: center;
+            }
+            .activities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .navbar .btn {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .news-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--green-dark)"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                Sport<span>erlebnis</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="rafting.html">Rafting & Canyoning</a>
+                <a href="camping.html">Unterkünfte</a>
+                <a href="preise.html">Preise</a>
+                <a href="schulsport.html">Schulsport</a>
+                <a href="restaurant.html">Restaurant</a>
+            </div>
+            <a href="camping.html#buchen" class="btn">Buchen</a>
+            <button class="menu-toggle">☰</button>
+        </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Dabei sein beim <span>Frei sein!</span></h1>
+                <p>Willkommen im Aktiv-Sport-Erlebnis-Camp Pristavec in Obervellach, Kärnten. Erlebe Natur, Action und Entspannung an einem Ort.</p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="rafting.html" class="btn">Abenteuer entdecken</a>
+                    <a href="camping.html" class="btn btn-outline">Unterkunft finden</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&h=600&fit=crop" alt="Rafting Abenteuer in Kärnten">
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro-section container">
+        <h2>Ein Paradies für Naturliebhaber & Adrenalinjunkies</h2>
+        <p>Egal ob du die Herausforderung beim Rafting und Canyoning suchst, einen gemütlichen Familienurlaub auf unserem Campingplatz planst oder eine unvergessliche Schulsportwoche organisieren möchtest – bei uns bist du genau richtig.</p>
+    </section>
+
+    <!-- Highlights -->
+    <section class="activities-section container">
+        <div class="section-header">
+            <h2>Unsere Erlebnis-Welten</h2>
+        </div>
+        
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-img">
+                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=600&h=400&fit=crop" alt="Rafting">
+                </div>
+                <div class="activity-content">
+                    <h3>Rafting & Canyoning</h3>
+                    <p>Wilde Flüsse, tiefe Schluchten und unvergessliche Naturerlebnisse auf der Möll, Isel und in unseren Canyons.</p>
+                    <a href="rafting.html" class="btn btn-outline">Touren ansehen</a>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-img">
+                    <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=600&h=400&fit=crop" alt="Campingplatz">
+                </div>
+                <div class="activity-content">
+                    <h3>Camping & Unterkünfte</h3>
+                    <p>Von gemütlichen Chalets und Tiny Häusern bis hin zu Stellplätzen für Zelte und Wohnwagen mitten in der Natur.</p>
+                    <a href="camping.html" class="btn btn-outline">Unterkünfte entdecken</a>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-img">
+                    <img src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=400&fit=crop" alt="Schulsport">
+                </div>
+                <div class="activity-content">
+                    <h3>Schulsport & Gruppen</h3>
+                    <p>Perfekt organisierte Schulsportwochen, Vereinsausflüge und Teambuilding-Events mit Rundum-Betreuung.</p>
+                    <a href="schulsport.html" class="btn btn-outline">Zu den Paketen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Angebote -->
+    <div class="wave-wrapper">
+        <svg class="wave-top" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#eef5ef" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,192C384,192,480,160,576,149.3C672,139,768,149,864,170.7C960,192,1056,224,1152,213.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        
+        <section class="color-section">
+            <div class="container">
+                <h2>Aktuelle Angebote & News</h2>
+                
+                <div class="news-grid">
+                    <div class="news-item">
+                        <div class="news-icon">🏡</div>
+                        <div class="news-content">
+                            <h4>Neues Familien Chalet</h4>
+                            <p>Chalet in den Hohen Tauern für 12-15 Personen. Großer Aufenthaltsraum, 4 Schlafzimmer, voll ausgestattete Küche. Perfekt für Familien oder Gruppen!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-icon">🎒</div>
+                        <div class="news-content">
+                            <h4>Aktivwochenende Paket</h4>
+                            <p>2 sportliche Tage: 2 Übernachtungen, Halbpension, Rafting auf der Möll und Canyoningtour in der Wunzenschlucht inkl. Lagerfeuerabend.</p>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-icon">🤸</div>
+                        <div class="news-content">
+                            <h4>Kinderparadies</h4>
+                            <p>Kinderanimation am Campingplatz mit gratis Klettern am Kletterturm, Nachtwanderungen, Kindercanyoning und unserem riesigen Motorikpark.</p>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-icon">🍻</div>
+                        <div class="news-content">
+                            <h4>Bar & Restaurant</h4>
+                            <p>Besuche unser Restaurant mit großer Terrasse für warme und kalte Buffets, Grillpartys, italienische Jause und gesellige Abende.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 48px;">
+                    <a href="preise.html" class="btn">Alle Preise & Angebote</a>
+                </div>
+            </div>
+        </section>
+
+        <svg class="wave-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#eef5ef" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,192C384,192,480,160,576,149.3C672,139,768,149,864,170.7C960,192,1056,224,1152,213.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Aktiv-Sport-Erlebnis-Camp<br>Pristavec</h4>
+                    <p>9821 Obervellach 175<br>Kärnten, Österreich</p>
+                    <p>Slogan: "Dabei sein beim Frei sein!"</p>
+                </div>
+                <div>
+                    <h4>Kontakt</h4>
+                    <a href="tel:+4347822727">Tel: +43 4782 / 2727</a>
+                    <a href="mailto:info@sporterlebnis.at">info@sporterlebnis.at</a>
+                </div>
+                <div>
+                    <h4>Schnelllinks</h4>
+                    <a href="index.html">Startseite</a>
+                    <a href="preise.html">Preisliste</a>
+                    <a href="schulsport.html">Schulsport</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            if(navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'rgba(255, 255, 255, 0.95)';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderRadius = '20px';
+                navLinks.style.marginTop = '10px';
+                navLinks.style.boxShadow = 'var(--shadow)';
+            }
+        });
+    </script>
+</body>
+</html>

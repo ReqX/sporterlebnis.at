@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camping & Unterkünfte | Aktiv-Sport-Erlebnis-Camp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b7a3b;
+            --primary-hover: #2d5e2d;
+            --accent: #ff6600;
+            --accent-hover: #e65c00;
+            --dark: #222222;
+            --light: #f5f5f5;
+            --white: #ffffff;
+            --font-main: 'Nunito', sans-serif;
+            --radius: 8px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); color: var(--dark); background: var(--light); line-height: 1.6; }
+        
+        /* Header & Navigation */
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; max-width: 1200px; margin: 0 auto; }
+        .logo img { max-width: 200px; height: auto; display: block; }
+        
+        nav ul { display: flex; list-style: none; gap: 1.5rem; }
+        nav a { text-decoration: none; color: var(--dark); font-weight: 700; transition: color 0.3s; padding: 0.5rem 0; position: relative; }
+        nav a:hover, nav a.active { color: var(--primary); }
+        nav a::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -2px; left: 0; background-color: var(--accent); transition: width 0.3s; }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--primary); }
+        
+        @media (max-width: 900px) {
+            nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); padding: 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); gap: 0; }
+            nav ul.show { display: flex; }
+            nav a { padding: 1rem 5%; display: block; border-bottom: 1px solid #eee; }
+            nav a::after { display: none; }
+            .menu-toggle { display: block; }
+        }
+
+        /* Page Hero */
+        .page-hero { position: relative; height: 40vh; min-height: 300px; background: url('images/das_camp.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; }
+        .page-hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .page-title { position: relative; color: var(--white); text-align: center; z-index: 10; font-size: clamp(2rem, 5vw, 3.5rem); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); padding: 0 5%; }
+
+        /* Main Content Layout */
+        main { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
+        
+        .intro-section { text-align: center; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .intro-section h2 { color: var(--primary); font-size: 2.2rem; margin-bottom: 1rem; }
+        .intro-section h3 { color: var(--accent); font-size: 1.5rem; margin-bottom: 1.5rem; font-style: italic; }
+        .intro-section p { font-size: 1.1rem; }
+
+        .facilities-box { background: var(--white); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); display: inline-block; margin-top: 1.5rem; border-left: 4px solid var(--primary); }
+        
+        /* Accomm Grid */
+        .accomm-list { display: flex; flex-direction: column; gap: 4rem; }
+        
+        .accomm-item { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+        .accomm-item:nth-child(even) { direction: rtl; }
+        .accomm-item:nth-child(even) > * { direction: ltr; }
+        
+        @media (max-width: 800px) {
+            .accomm-item { grid-template-columns: 1fr; gap: 0; }
+            .accomm-item:nth-child(even) { direction: ltr; }
+        }
+
+        .accomm-img-wrap { height: 100%; min-height: 300px; }
+        .accomm-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .accomm-content { padding: 3rem; }
+        @media (max-width: 800px) { .accomm-content { padding: 2rem; } }
+        
+        .accomm-title { color: var(--primary); font-size: 1.8rem; margin-bottom: 1rem; }
+        .accomm-desc { margin-bottom: 1.5rem; color: #555; }
+        
+        .accomm-prices { background: var(--light); padding: 1.5rem; border-radius: var(--radius); }
+        .accomm-prices h4 { margin-bottom: 0.8rem; color: var(--dark); border-bottom: 2px solid #ddd; padding-bottom: 0.5rem; }
+        .accomm-prices ul { list-style: none; }
+        .accomm-prices li { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .accomm-prices li strong { color: var(--accent); }
+
+        /* Footer */
+        footer { background: var(--dark); color: var(--white); padding: 4rem 5% 2rem; margin-top: 4rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-col h3 { color: var(--white); margin-bottom: 1.5rem; position: relative; padding-bottom: 0.5rem; }
+        .footer-col h3::after { content: ''; position: absolute; width: 40px; height: 3px; background: var(--accent); bottom: 0; left: 0; }
+        .footer-col p { margin-bottom: 0.8rem; color: #ccc; }
+        .footer-col a { color: #ccc; text-decoration: none; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #888; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Aktiv-Sport-Erlebnis-Camp Pristavec" onerror="this.src='https://via.placeholder.com/200x60?text=Logo';">
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html" class="active">Camping & Unterkunft</a></li>
+                    <li><a href="restaurant.html">Restaurant</a></li>
+                    <li><a href="schulsport.html">Schulsport</a></li>
+                    <li><a href="preise.html">Preise</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <h1 class="page-title">Camping und Familiencamping</h1>
+    </div>
+
+    <main>
+        <div class="intro-section">
+            <h2>Wunderschöner Naturbelassener Campingplatz</h2>
+            <h3>"Sie kommen als Gast und du Gehst als Freund!"</h3>
+            <p>Unser Campingplatz liegt idyllisch direkt am Fluss. Erleben Sie einen Urlaub bei Freunden inmitten der Natur Kärntens.</p>
+            
+            <div class="facilities-box">
+                <strong>Ausstattung:</strong> 2 Sanitärgebäude | Chemietoiletten Entleerung | Wassertank | 2 Grillplätze | Strom 220V
+            </div>
+        </div>
+
+        <div class="accomm-list">
+            
+            <div class="accomm-item">
+                <div class="accomm-img-wrap">
+                    <img src="images/chalet_vordere_ansicht.jpg" alt="Chalet Hütte Kärnten" onerror="this.src='https://via.placeholder.com/600x400?text=Chalet';">
+                </div>
+                <div class="accomm-content">
+                    <h3 class="accomm-title">Chalet Hütte Kärnten</h3>
+                    <p class="accomm-desc">Luxuriöse Hütte für bis zu 10-12 Personen. Ausgestattet mit 4 Schlafzimmern, Küche, WC/Dusche, TV, WLAN, Pelletheizung, einer eigenen Sauna und gemütlicher Terrasse.</p>
+                    <div class="accomm-prices">
+                        <h4>Preise</h4>
+                        <ul>
+                            <li><span>Mai/Juni/Sep/Okt/Nov</span> <strong>€ 260 / Nacht</strong></li>
+                            <li><span>Jul/Aug/Dez-Mrz</span> <strong>€ 295 / Nacht</strong></li>
+                            <li><span>Endreinigung</span> <strong>€ 75</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accomm-item">
+                <div class="accomm-img-wrap">
+                    <img src="images/img_0629_0.jpg" alt="Tiny Häuser" onerror="this.src='https://via.placeholder.com/600x400?text=Tiny+Haus';">
+                </div>
+                <div class="accomm-content">
+                    <h3 class="accomm-title">Tiny Häuser</h3>
+                    <p class="accomm-desc">Vollholz Tiny Häuser für 4-5 Personen. Liebevoll eingerichtet mit einer Zirben Eckbank, einer praktischen kleinen Küche und gemütlichen Schlaflofts.</p>
+                    <div class="accomm-prices">
+                        <h4>Preise</h4>
+                        <ul>
+                            <li><span>Mai / September</span> <strong>€ 105 / Nacht</strong></li>
+                            <li><span>Hauptsaison</span> <strong>€ 115 / Nacht</strong></li>
+                            <li><span>Endreinigung (Tiere +€50)</span> <strong>€ 45</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accomm-item">
+                <div class="accomm-img-wrap">
+                    <img src="images/chalet_familienzimmer.jpg" alt="Mobilheime" onerror="this.src='https://via.placeholder.com/600x400?text=Mobilheim';">
+                </div>
+                <div class="accomm-content">
+                    <h3 class="accomm-title">Mobilheime</h3>
+                    <p class="accomm-desc">Komfortable Heime für bis zu 6 Personen. Ausgestattet mit Eltern- und Kinderzimmer, Dusche/WC, voll ausgestatteter Küche und einer schönen Terrasse.</p>
+                    <div class="accomm-prices">
+                        <h4>Preise</h4>
+                        <ul>
+                            <li><span>Vor- & Nachsaison</span> <strong>€ 105 / Nacht</strong></li>
+                            <li><span>Hauptsaison</span> <strong>€ 125 / Nacht</strong></li>
+                            <li><span>Endreinigung (Tiere +€50)</span> <strong>€ 35</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accomm-item">
+                <div class="accomm-img-wrap">
+                    <img src="images/wohnwagen_231.jpg" alt="Wohnwagen" onerror="this.src='https://via.placeholder.com/600x400?text=Wohnwagen';">
+                </div>
+                <div class="accomm-content">
+                    <h3 class="accomm-title">Wohnwagen</h3>
+                    <p class="accomm-desc">Miet-Wohnwagen für 2-3 Personen. Inklusive 3 Schlafplätzen, Küche, Stromanschluss und einer Sitzgarnitur vor dem Wagen.</p>
+                    <div class="accomm-prices">
+                        <h4>Preise</h4>
+                        <ul>
+                            <li><span>Pauschal</span> <strong>€ 55 / Nacht</strong></li>
+                            <li><span>Endreinigung</span> <strong>€ 25</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accomm-item">
+                <div class="accomm-img-wrap">
+                    <img src="images/das_camp.jpg" alt="Kleine Holzhütten" onerror="this.src='https://via.placeholder.com/600x400?text=Holzhütten';">
+                </div>
+                <div class="accomm-content">
+                    <h3 class="accomm-title">Kleine Holzhütten</h3>
+                    <p class="accomm-desc">Urig und gemütlich für bis zu 4 Personen. Mit 2 Stockbetten, kleiner Kochgelegenheit und Terrasse.</p>
+                    <div class="accomm-prices">
+                        <h4>Preise</h4>
+                        <ul>
+                            <li><span>Mai / September</span> <strong>€ 75 / Nacht</strong></li>
+                            <li><span>Juli / August</span> <strong>€ 85 / Nacht</strong></li>
+                            <li><span>Endreinigung (Tiere +€55)</span> <strong>€ 45</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Kontakt</h3>
+                <p>Aktiv-Sport-Erlebnis-Camp Pristavec</p>
+                <p>9821 Obervellach 175</p>
+                <p>Kärnten, Austria</p>
+            </div>
+            <div class="footer-col">
+                <h3>Telefon & Mail</h3>
+                <p>Tel: <a href="tel:+4347822727">+43 4782 / 2727</a></p>
+                <p>Mobile: <a href="tel:+436642202938">+43 664 2202938</a></p>
+                <p>Email: <a href="mailto:info@sporterlebnis.at">info@sporterlebnis.at</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>Schnelllinks</h3>
+                <p><a href="rafting.html">Rafting & Canyoning</a></p>
+                <p><a href="camping.html">Unterkünfte</a></p>
+                <p><a href="preise.html">Preisliste 2026</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Modernisiert für 2026.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

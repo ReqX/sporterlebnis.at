@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sporterlebnis Pristavec | Naturkraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #090e0b;
+            --color-surface: #121c17;
+            --color-primary: #1a3a2a;
+            --color-primary-light: #2b5c43;
+            --color-accent: #c4a24c;
+            --color-text: #e8edea;
+            --color-text-muted: #a4b3ab;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            transition: background 0.3s ease;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--color-accent);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        nav a.active {
+            color: var(--color-accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid:hover {
+            background: #d4b566;
+            color: var(--color-bg);
+            border-color: #d4b566;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1542385151-efd9000785a0?q=80&w=2500&auto=format&fit=crop') center/cover no-repeat;
+            filter: brightness(0.4) contrast(1.1);
+            z-index: -1;
+            transform: scale(1.05);
+            animation: slowZoom 20s ease-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 6rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* Activities Section */
+        .activities {
+            padding: 8rem 5%;
+            background: linear-gradient(to bottom, var(--color-bg), var(--color-surface));
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            display: block;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+            filter: brightness(0.6);
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.8);
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-content {
+            transform: translateY(0);
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: var(--color-text-muted);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            transition-delay: 0.1s;
+        }
+
+        .card:hover p {
+            opacity: 1;
+        }
+
+        /* News Section */
+        .news {
+            padding: 8rem 5%;
+            background-color: var(--color-bg);
+            border-top: 1px solid rgba(196, 162, 76, 0.1);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .news-image {
+            position: relative;
+            height: 600px;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .news-image::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid var(--color-accent);
+            z-index: -1;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .news-item {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item h4 {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 8rem 5%;
+            text-align: center;
+            background: url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=2500&auto=format&fit=crop') center/cover fixed;
+            position: relative;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 58, 42, 0.85);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050806;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(196, 162, 76, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a {
+            color: var(--color-text-muted);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .news-image {
+                height: 400px;
+                order: 2;
+            }
+            .news-list {
+                order: 1;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Sport<span>erlebnis</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                <li><a href="camping.html">Camping</a></li>
+                <li><a href="schulsport.html">Schulsport</a></li>
+                <li><a href="restaurant.html">Restaurant</a></li>
+                <li><a href="preise.html">Preise</a></li>
+            </ul>
+        </nav>
+        <a href="#kontakt" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;">Kontakt</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Dabei sein beim Frei sein!</h1>
+            <p>Aktiv-Sport-Erlebnis-Camp Pristavec in Kärnten</p>
+            <a href="#entdecken" class="btn btn-solid">Abenteuer beginnen</a>
+        </div>
+    </section>
+
+    <section id="entdecken" class="activities">
+        <div class="section-header">
+            <h2>Die Elemente Spüren</h2>
+            <p>Entdecke die unberührte Natur des Mölltals mit unseren geführten Touren und Übernachtungsmöglichkeiten.</p>
+        </div>
+        <div class="grid-3">
+            <a href="rafting.html" class="card">
+                <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=800&auto=format&fit=crop" alt="Rafting auf der Möll">
+                <div class="card-content">
+                    <h3>Wildwasser Rafting</h3>
+                    <p>Bezwinge die Wellen der Möll und Isel. Ein unvergessliches Erlebnis für Adrenalinjunkies.</p>
+                </div>
+            </a>
+            <a href="rafting.html" class="card">
+                <img src="https://images.unsplash.com/photo-1587547131116-a0655a526190?q=80&w=800&auto=format&fit=crop" alt="Canyoning">
+                <div class="card-content">
+                    <h3>Canyoning</h3>
+                    <p>Springe in glasklare Gumpen und seile dich über tosenden Wasserfällen ab.</p>
+                </div>
+            </a>
+            <a href="camping.html" class="card">
+                <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=800&auto=format&fit=crop" alt="Camping & Unterkünfte">
+                <div class="card-content">
+                    <h3>Natur-Camping</h3>
+                    <p>Übernachte in gemütlichen Chalets, Tiny Houses oder direkt unter den Sternen.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="news">
+        <div class="news-grid">
+            <div class="news-list">
+                <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                    <h2>Aktuelles & Angebote</h2>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Familien Chalet Hütte Kärnten</h4>
+                    <p>Erleben Sie rustikalen Charme in den Hohen Tauern. Großzügiger Aufenthaltsraum für 12-15 Personen, voll ausgestattete Küche und 4 gemütliche Schlafzimmer für die ganze Familie.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Aktivwochenende Special</h4>
+                    <p>2 sportliche Tage inkl. Rafting, Canyoning, 2 Übernachtungen, Halbpension mit Grillabend und Begrüßungsgetränk. Das Komplettpaket für Abenteuerlustige.</p>
+                </div>
+                
+                <div class="news-item">
+                    <h4>Kinderparadies</h4>
+                    <p>Während Sie entspannen, toben die Kleinen: 2 Spielplätze, eine Wasserwelt mit Pumpe und unser Motorikpark lassen keine Langeweile aufkommen.</p>
+                </div>
+            </div>
+            <div class="news-image">
+                <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1200&auto=format&fit=crop" alt="Camp Impression">
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Bereit für das Abenteuer?</h2>
+            <p>Planen Sie jetzt Ihren Aufenthalt im Aktiv-Sport-Erlebnis-Camp Pristavec.</p>
+            <a href="preise.html" class="btn btn-solid">Zur Preisliste</a>
+        </div>
+    </section>
+
+    <footer id="kontakt">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 2px;">Sport<span>erlebnis</span></h4>
+                <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Dabei sein beim Frei sein! Ihr Familienbetrieb seit 1982 in Kärnten.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html">Unterkünfte & Camping</a></li>
+                    <li><a href="restaurant.html">Restaurant & Bar</a></li>
+                    <li><a href="schulsport.html">Schulsport</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li>Aktiv-Sport-Erlebnis-Camp Pristavec</li>
+                    <li>9821 Obervellach 175, Austria</li>
+                    <li>Tel: +43 4782 / 2727</li>
+                    <li>Email: info@sporterlebnis.at</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten. Design Konzept "Naturkraft".
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schulsport | Sporterlebnis Pristavec</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-dark: #001f4d;
+            --color-blue: #0066aa;
+            --color-blue-dark: #003366;
+            --color-blue-light: #e6f2ff;
+            --color-accent: #ff6600;
+            --color-white: #ffffff;
+            --font-heading: 'Bebas Neue', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: #333; background-color: var(--color-white); overflow-x: hidden; line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); text-transform: uppercase; line-height: 1; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Nav */
+        header { position: absolute; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .logo { font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-white); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); letter-spacing: 1px; }
+        .logo a { color: inherit; text-decoration: none; }
+        .logo span { color: var(--color-accent); }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { color: var(--color-white); font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); transition: color 0.2s; }
+        nav a:hover, nav a.active { color: var(--color-accent); }
+        .btn { display: inline-block; font-family: var(--font-heading); font-size: 1.5rem; padding: 0.8rem 2rem; background-color: var(--color-accent); color: var(--color-white); text-transform: uppercase; letter-spacing: 1px; transform: skewX(-15deg); transition: all 0.3s; border: none; cursor: pointer; box-shadow: 4px 4px 0px var(--color-dark); }
+        .btn span { display: inline-block; transform: skewX(15deg); }
+        .btn:hover { background-color: var(--color-dark); box-shadow: 4px 4px 0px var(--color-accent); transform: skewX(-15deg) translateY(-2px); }
+
+        /* Hero */
+        .hero { height: 70vh; background: url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=2500&auto=format&fit=crop') center/cover no-repeat; position: relative; clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); display: flex; align-items: center; padding: 0 5%; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,51,102,0.8) 0%, rgba(0,102,170,0.3) 100%); }
+        .hero-content { position: relative; z-index: 10; max-width: 800px; color: var(--color-white); }
+        .hero-badge { display: inline-block; background: var(--color-accent); padding: 0.5rem 1rem; font-family: var(--font-heading); font-size: 1.5rem; transform: skewX(-15deg); margin-bottom: 1rem; }
+        .hero-badge span { display: inline-block; transform: skewX(15deg); }
+        .hero h1 { font-size: clamp(4rem, 8vw, 8rem); text-shadow: 4px 4px 0px rgba(0,0,0,0.2); margin-bottom: 1rem; line-height: 0.9; }
+
+        /* Intro */
+        .intro-section { padding: 4rem 5% 2rem; text-align: center; max-width: 900px; margin: 0 auto; }
+        .intro-section h2 { font-size: 3rem; color: var(--color-blue-dark); margin-bottom: 1.5rem; }
+        .intro-section p { font-size: 1.5rem; color: var(--color-accent); font-weight: 700; margin-bottom: 2rem; transform: skewX(-5deg); }
+        
+        /* Grid Layout */
+        .content-section { padding: 2rem 5% 8rem; max-width: 1200px; margin: 0 auto; }
+        .activity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        
+        .activity-card { background: var(--color-blue-light); border: 2px solid var(--color-blue); padding: 2rem; position: relative; transition: all 0.3s; transform: skewX(-2deg); }
+        .activity-card:hover { transform: skewX(-2deg) translateY(-5px); box-shadow: 8px 8px 0px var(--color-blue-dark); border-color: var(--color-blue-dark); }
+        .activity-card-content { transform: skewX(2deg); }
+        .activity-card h3 { font-size: 2.2rem; color: var(--color-blue-dark); margin-bottom: 1rem; border-bottom: 3px solid var(--color-accent); display: inline-block; padding-bottom: 0.2rem; }
+        .activity-card p { color: #444; }
+
+        /* Trust Signals / Goals */
+        .goals-bar { background-color: var(--color-dark); color: var(--color-white); padding: 4rem 5%; clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%); margin: 4rem 0; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; text-align: center; }
+        .goal-item { max-width: 250px; }
+        .goal-icon { font-size: 3rem; color: var(--color-accent); margin-bottom: 1rem; }
+        .goal-item h4 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+        /* Package Details */
+        .package-box { background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0 100 L50 0 L100 100 Z" fill="rgba(0,102,170,0.05)"/></svg>'); border: 5px solid var(--color-blue-dark); padding: 4rem; margin-top: 4rem; position: relative; box-shadow: 12px 12px 0px var(--color-accent); }
+        .package-box h2 { font-size: 3.5rem; color: var(--color-blue-dark); margin-bottom: 2rem; text-align: center; }
+        .package-content-flex { display: flex; gap: 4rem; flex-wrap: wrap; align-items: center; }
+        .package-list { flex: 1; min-width: 300px; }
+        .package-list ul { list-style: none; }
+        .package-list li { margin-bottom: 1rem; font-size: 1.1rem; position: relative; padding-left: 2rem; }
+        .package-list li::before { content: '➔'; position: absolute; left: 0; color: var(--color-accent); font-weight: bold; }
+        .package-price-col { background: var(--color-white); padding: 3rem; text-align: center; border: 3px solid var(--color-accent); flex: 0 0 350px; }
+        .price-val { font-family: var(--font-heading); font-size: 5rem; color: var(--color-blue); line-height: 1; margin: 1rem 0; }
+        .price-val small { font-size: 2rem; }
+
+        /* Footer */
+        footer { background-color: var(--color-dark); color: var(--color-white); padding: 4rem 5% 2rem; clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%); margin-top: 2rem; position: relative; z-index: 10; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem; padding-top: 2rem; }
+        .footer-col h4 { font-size: 2rem; color: var(--color-accent); margin-bottom: 1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.5rem; }
+        .footer-col a { color: #aaa; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--color-white); }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; color: #666; }
+
+        @media (max-width: 900px) {
+            nav ul { display: none; }
+            .package-content-flex { gap: 2rem; }
+            .package-price-col { flex: 1 1 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">Sport<span>erlebnis</span></a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                <li><a href="camping.html">Camping</a></li>
+                <li><a href="preise.html">Preise</a></li>
+                <li><a href="schulsport.html" class="active">Schulsport</a></li>
+                <li><a href="restaurant.html">Restaurant</a></li>
+            </ul>
+        </nav>
+        <button class="btn"><span>Anfragen</span></button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><span>Klassenfahrt</span></div>
+            <h1>Schulsport<br>Wochen</h1>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <h2>Gemeinsam über sich hinauswachsen</h2>
+        <p>Wir bringen Kinder zusammen — Teambildung — stärken das ICH — Spiel, Spaß, Sport</p>
+        <div style="font-size: 1.1rem; color: #555;">Unterbringung in unseren gemütlichen Holzblockhütten mit Stockbetten inklusive Halb- oder Vollpension.</div>
+    </section>
+
+    <div class="goals-bar">
+        <div class="goal-item">
+            <div class="goal-icon">💪</div>
+            <h4>Verantwortung</h4>
+            <p style="color: #aaa; font-size: 0.9rem;">Gegenseitiges Sichern und Vertrauen aufbauen.</p>
+        </div>
+        <div class="goal-item">
+            <div class="goal-icon">🤝</div>
+            <h4>Teambildung</h4>
+            <p style="color: #aaa; font-size: 0.9rem;">Gemeinsam als Team ans Ziel kommen.</p>
+        </div>
+        <div class="goal-item">
+            <div class="goal-icon">🧠</div>
+            <h4>Koordination</h4>
+            <p style="color: #aaa; font-size: 0.9rem;">Lernfähigkeit und Kreativität fördern.</p>
+        </div>
+        <div class="goal-item">
+            <div class="goal-icon">🛡️</div>
+            <h4>Sicherheit</h4>
+            <p style="color: #aaa; font-size: 0.9rem;">Staatlich geprüfte Guides & Trainer.</p>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <div class="activity-grid">
+            <div class="activity-card">
+                <div class="activity-card-content">
+                    <h3>Rafting Möll</h3>
+                    <p>Erfahrene, staatlich geprüfte Raftführer sorgen für Sicherheit. Max. 10 Personen pro Boot. Gemeinsam paddeln schweißt zusammen!</p>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-card-content">
+                    <h3>Canyoning</h3>
+                    <p>Dem Flusslauf folgen, rutschen, springen, tümpeln in der Gratschacher Schlucht. Ein echtes Naturerlebnis.</p>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-card-content">
+                    <h3>Hochseilgarten & Klettern</h3>
+                    <p>Ziel der Gruppenübungen ist es, anderen durch gegenseitiges Sichern zu vertrauen und Verantwortung zu übernehmen.</p>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-card-content">
+                    <h3>Motorikpark ®</h3>
+                    <p>"Wir bringen Menschen in Bewegung" mit speziell ausgebildeten Trainern. Koordination, Kreativität und "Kreativ bewegte Schule".</p>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-card-content">
+                    <h3>Golf Driving Range</h3>
+                    <p>Golfschnuppern fördert Ausdauer und Konzentration. Es stärkt spielerisch die Leistungs- und Lernfähigkeit.</p>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-card-content">
+                    <h3>Camp Action</h3>
+                    <p>Brückenspringen, Flusssurfen, Nachtwanderung, Tischtennis, Skaterplatz, Lagerfeuer, Pfeil und Bogenschießen und vieles mehr!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="package-box">
+            <h2>Die Ultimative 5-Tage Woche</h2>
+            <div class="package-content-flex">
+                <div class="package-list">
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem; font-weight: 700;">Beispiel-Angebot (Montag bis Freitag):</p>
+                    <ul>
+                        <li>4 Übernachtungen in Blockhütten</li>
+                        <li><strong>1 Raftfahrt</strong> auf der Möll (14 Flusskilometer)</li>
+                        <li><strong>Canyoning</strong> in der Fragantschlucht</li>
+                        <li><strong>Hochseilgarten</strong> mit Motivationsprogramm</li>
+                        <li><strong>Motorikpark ®</strong> mit Trainer</li>
+                        <li>Schnuppern auf der Golf Driving Range</li>
+                        <li>Brückenspringen & Flussschwimmen</li>
+                        <li>Camp-Nutzung (Tischtennis, Fußball, Lagerfeuer, Nachtwanderung)</li>
+                    </ul>
+                </div>
+                <div class="package-price-col">
+                    <div style="text-transform: uppercase; font-weight: 700; color: var(--color-dark); letter-spacing: 1px;">Komplettpaket inkl. Vollpension</div>
+                    <div class="price-val">€315<small>,-</small></div>
+                    <div style="margin-bottom: 2rem; color: #666;">pro Schüler</div>
+                    <button class="btn" style="width: 100%;"><span>Für Klasse anfragen</span></button>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Auch für 2 oder 3 Tage individuell anpassbar!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-family: var(--font-heading); font-size: 2.5rem; letter-spacing: 1px; color: var(--color-white);">Sport<span style="color: var(--color-accent)">erlebnis</span></h4>
+                <p style="color: #aaa; margin-bottom: 1rem; font-weight: 500;">Dabei sein beim Frei sein! Dein Familienbetrieb seit 1982.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Erkunden</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html">Camping</a></li>
+                    <li><a href="preise.html">Preise</a></li>
+                    <li><a href="schulsport.html">Schulsport</a></li>
+                    <li><a href="restaurant.html">Restaurant</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li>Aktiv-Sport-Erlebnis-Camp Pristavec</li>
+                    <li>9821 Obervellach 175, Austria</li>
+                    <li>Tel: +43 4782 / 2727</li>
+                    <li>info@sporterlebnis.at</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten. Design Konzept "Wildwasser".
+        </div>
+    </footer>
+</body>
+</html>

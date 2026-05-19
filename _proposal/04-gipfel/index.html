@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sporterlebnis Kärnten - Dabei sein beim Frei sein!</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        alpine: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            900: '#0f172a',
+                        },
+                        glacier: '#2563eb',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        widest: '.25em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: white; color: theme('colors.alpine.900'); }
+        .table-row { transition: background-color 0.2s ease, transform 0.2s ease; border-bottom: 1px solid theme('colors.alpine.200'); }
+        .table-row:hover { background-color: theme('colors.alpine.50'); transform: translateX(4px); }
+        .table-row:last-child { border-bottom: none; }
+        .section-title { position: relative; display: inline-block; margin-bottom: 3rem; padding-bottom: 1rem; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: theme('colors.glacier'); }
+        .photo-divider { height: 40vh; min-height: 400px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; }
+        .photo-divider::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.5)); }
+        
+        .hero-section { min-height: 85vh; background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; }
+        .hero-section::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8)); }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-glacier selection:text-white">
+
+    <nav class="bg-white/90 backdrop-blur-md border-b border-alpine-100 sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-xl font-bold tracking-tight text-alpine-900 uppercase">
+                        Sporterlebnis<span class="text-glacier">.at</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide uppercase">
+                    <a href="index.html" class="text-glacier border-b border-glacier pb-1">Home</a>
+                    <a href="rafting.html" class="text-alpine-900 hover:text-glacier transition-colors">Abenteuer</a>
+                    <a href="camping.html" class="text-alpine-900 hover:text-glacier transition-colors">Camping</a>
+                    <a href="schulsport.html" class="text-alpine-900 hover:text-glacier transition-colors">Schulsport</a>
+                    <a href="restaurant.html" class="text-alpine-900 hover:text-glacier transition-colors">Restaurant</a>
+                    <a href="preise.html" class="text-alpine-900 hover:text-glacier transition-colors">Preise</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-alpine-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=1600&h=900&fit=crop');">
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <p class="text-glacier font-semibold tracking-widest uppercase text-sm mb-6 text-white">Aktiv-Sport-Erlebnis-Camp Pristavec</p>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-8">Dabei sein<br>beim Frei sein!</h1>
+            <p class="text-xl text-white/80 font-light max-w-2xl mx-auto mb-12">
+                Ihr Outdoorparadies in Obervellach, Kärnten. Rafting, Canyoning, Camping und unvergessliche Erlebnisse in den Hohen Tauern.
+            </p>
+            <a href="preise.html" class="inline-block bg-glacier text-white px-10 py-4 text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-alpine-900 transition-colors duration-300">
+                Erlebnis Buchen
+            </a>
+        </div>
+    </header>
+
+    <!-- Highlights -->
+    <section class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-alpine-900 section-title uppercase mx-auto">Unsere Welten</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="rafting.html" class="group block relative overflow-hidden bg-alpine-900 h-96">
+                    <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&q=80" alt="Rafting" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-alpine-900 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <span class="text-glacier text-xs font-bold uppercase tracking-widest block mb-2">Wassersport</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Rafting & Canyoning</h3>
+                        <p class="text-white/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Auf der Möll, der Isel und in Kärntens schönsten Schluchten.</p>
+                    </div>
+                </a>
+
+                <a href="camping.html" class="group block relative overflow-hidden bg-alpine-900 h-96">
+                    <img src="https://images.unsplash.com/photo-1534880606858-29b0e8a24e8d?w=800&q=80" alt="Camping" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-alpine-900 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <span class="text-glacier text-xs font-bold uppercase tracking-widest block mb-2">Unterkünfte</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Camping & Chalets</h3>
+                        <p class="text-white/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Naturbelassener Platz, Mobilheime, Tiny Häuser und pure Erholung.</p>
+                    </div>
+                </a>
+
+                <a href="schulsport.html" class="group block relative overflow-hidden bg-alpine-900 h-96">
+                    <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&q=80" alt="Schulsport" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-alpine-900 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <span class="text-glacier text-xs font-bold uppercase tracking-widest block mb-2">Für Gruppen</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Schulsportwochen</h3>
+                        <p class="text-white/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Teambildung, Motorikpark, Action und Gemeinschaft für Schulen.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Angebote -->
+    <section class="py-24 bg-alpine-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold tracking-tight text-alpine-900 section-title uppercase">Aktuell & Angebote</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                <!-- News Item -->
+                <div class="bg-white p-8 border border-alpine-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="bg-alpine-900 text-white text-xs font-bold px-3 py-1 uppercase tracking-wider">Angebot</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-alpine-900 mb-4">Aktivwochenende</h3>
+                    <p class="text-alpine-900/70 mb-6 font-light leading-relaxed">
+                        2 sportliche Tage im SPORT-ERLEBNIS-CAMP: 2 Übernachtungen, Halbpension (1x Grillen), Rafting auf der Möll, Canyoning in der Wunzenschlucht und gemütlicher Lagerfeuerabend.
+                    </p>
+                    <a href="preise.html" class="text-glacier font-semibold uppercase tracking-widest text-sm hover:text-alpine-900 transition-colors flex items-center">
+                        Details ansehen
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+
+                <!-- News Item -->
+                <div class="bg-white p-8 border border-alpine-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="bg-glacier text-white text-xs font-bold px-3 py-1 uppercase tracking-wider">News</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-alpine-900 mb-4">Kinderparadies</h3>
+                    <p class="text-alpine-900/70 mb-6 font-light leading-relaxed">
+                        Wir bauen aus! Entdecken Sie unsere 2 Kinderspielplätze, die Wasserwelt mit Wasserpumpe, den neuen Motorikpark und gratis Kinderanimation am Campingplatz im Sommer.
+                    </p>
+                    <a href="camping.html" class="text-glacier font-semibold uppercase tracking-widest text-sm hover:text-alpine-900 transition-colors flex items-center">
+                        Mehr zum Camp
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-alpine-900 text-white pt-20 pb-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/10 pb-12 mb-8">
+                <div class="mb-8 md:mb-0">
+                    <span class="text-2xl font-bold tracking-tight uppercase block mb-2">Sporterlebnis.at</span>
+                    <span class="text-white/50 text-sm tracking-wide">Aktiv-Sport-Erlebnis-Camp Pristavec</span>
+                </div>
+                <div class="text-left md:text-right text-sm text-white/70 space-y-1">
+                    <p>9821 Obervellach 175, Kärnten</p>
+                    <p>Tel: +43 4782/2727</p>
+                    <p>info@sporterlebnis.at</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-white/40 uppercase tracking-widest">
+                <p>&copy; 2026 Sporterlebnis</p>
+                <div class="space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Impressum</a>
+                    <a href="#" class="hover:text-white transition-colors">Datenschutz</a>
+                    <a href="#" class="hover:text-white transition-colors">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
