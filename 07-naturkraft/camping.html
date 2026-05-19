@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camping & Unterkünfte | Sporterlebnis Pristavec | Naturkraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #090e0b;
+            --color-surface: #121c17;
+            --color-primary: #1a3a2a;
+            --color-primary-light: #2b5c43;
+            --color-accent: #c4a24c;
+            --color-text: #e8edea;
+            --color-text-muted: #a4b3ab;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            transition: background 0.3s ease;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--color-accent);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        nav a.active {
+            color: var(--color-accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid:hover {
+            background: #d4b566;
+            color: var(--color-bg);
+            border-color: #d4b566;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1534880606858-29b0e8a24e8d?q=80&w=2500&auto=format&fit=crop') center/cover no-repeat;
+            filter: brightness(0.4) contrast(1.1);
+            z-index: -1;
+            transform: scale(1.05);
+            animation: slowZoom 20s ease-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--color-text-muted);
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* Intro */
+        .intro {
+            padding: 6rem 5%;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro h2 {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Accommodations */
+        .accommodations {
+            padding: 0 5% 8rem;
+            background: var(--color-bg);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+
+        .acc-card {
+            background: var(--color-surface);
+            border: 1px solid rgba(196, 162, 76, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .acc-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-accent);
+        }
+
+        .acc-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .acc-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+            transition: filter 0.3s ease;
+        }
+
+        .acc-card:hover .acc-img img {
+            filter: brightness(1);
+        }
+
+        .acc-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .acc-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .acc-content p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .acc-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .acc-features li {
+            font-size: 0.9rem;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .acc-features li::before {
+            content: '•';
+            color: var(--color-accent);
+            position: absolute;
+            left: 0;
+        }
+
+        .acc-price {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050806;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(196, 162, 76, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a {
+            color: var(--color-text-muted);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Sport<span>erlebnis</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                <li><a href="camping.html" class="active">Camping</a></li>
+                <li><a href="schulsport.html">Schulsport</a></li>
+                <li><a href="restaurant.html">Restaurant</a></li>
+                <li><a href="preise.html">Preise</a></li>
+            </ul>
+        </nav>
+        <a href="#kontakt" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;">Kontakt</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Natur-Camping</h1>
+            <p>"Sie kommen als Gast und gehen als Freund!"</p>
+        </div>
+    </section>
+
+    <section class="intro">
+        <h2>Urlaub im Eldorado</h2>
+        <p>Wunderschöner, naturbelassener Campingplatz direkt am Fluss inmitten der Hohen Tauern. Ruhige Lage, teilweise Schatten und freie Platzwahl bieten viel Freiraum für Kinder und Erwachsene.</p>
+        <p>Das Camp bietet viel Abwechslung mit Lagerfeuer- und Grillplätzen. Neben typischen Outdoor-Aktivitäten stehen euch die Wasserwelt, ein Hochseilgarten, der Motorikpark, Tischtennistische, Skaterplatz und eine Golf Driving Range zur Verfügung!</p>
+    </section>
+
+    <section class="accommodations">
+        <div class="grid-3">
+            <div class="acc-card">
+                <div class="acc-img">
+                    <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=800&auto=format&fit=crop" alt="Chalet Kärnten">
+                </div>
+                <div class="acc-content">
+                    <h3>Chalet Hütte Kärnten</h3>
+                    <p>Ideal für große Familien oder Gruppen bis zu 12 Personen. Rustikaler Charme kombiniert mit modernem Komfort.</p>
+                    <ul class="acc-features">
+                        <li>4 Schlafzimmer (2 Doppel, 2 Familien)</li>
+                        <li>Voll ausgestattete Küche</li>
+                        <li>Sauna & Wellness</li>
+                        <li>Terrasse mit Grill</li>
+                    </ul>
+                    <div class="acc-price">ab € 260,00 / Nacht</div>
+                </div>
+            </div>
+
+            <div class="acc-card">
+                <div class="acc-img">
+                    <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=800&auto=format&fit=crop" alt="Tiny Haus">
+                </div>
+                <div class="acc-content">
+                    <h3>Tiny Häuser</h3>
+                    <p>Minimalistisches Wohnen für 4-5 Personen. Komplett aus Holz gefertigt mit gemütlicher Zirben-Eckbank.</p>
+                    <ul class="acc-features">
+                        <li>1-2 Schlaflofts</li>
+                        <li>Küche</li>
+                        <li>Sitzgelegenheit im Freien</li>
+                        <li>Sanitäranlagen im Hauptgebäude</li>
+                    </ul>
+                    <div class="acc-price">ab € 105,00 / Nacht</div>
+                </div>
+            </div>
+
+            <div class="acc-card">
+                <div class="acc-img">
+                    <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?q=80&w=800&auto=format&fit=crop" alt="Mobilheim">
+                </div>
+                <div class="acc-content">
+                    <h3>Mobilheime</h3>
+                    <p>Komfortables Wohnen für bis zu 6 Personen mit privater Terrasse und eigener Sanitäreinrichtung.</p>
+                    <ul class="acc-features">
+                        <li>Eltern- & Kinderzimmer getrennt</li>
+                        <li>Eigene Dusche und WC</li>
+                        <li>Große Küche</li>
+                        <li>Terrasse mit Sitzgarnitur</li>
+                    </ul>
+                    <div class="acc-price">ab € 105,00 / Nacht</div>
+                </div>
+            </div>
+            
+            <div class="acc-card">
+                <div class="acc-img">
+                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=800&auto=format&fit=crop" alt="Holzhütte">
+                </div>
+                <div class="acc-content">
+                    <h3>Kleine Holzhütten</h3>
+                    <p>Klassisches Camp-Feeling für 4 Personen. Kompakt, gemütlich und mitten im Geschehen.</p>
+                    <ul class="acc-features">
+                        <li>2 Stockbetten</li>
+                        <li>Voll ausgestattete Küchenzeile</li>
+                        <li>Essbereich & Terrasse</li>
+                        <li>Sanitäranlagen im Hauptgebäude</li>
+                    </ul>
+                    <div class="acc-price">ab € 75,00 / Nacht</div>
+                </div>
+            </div>
+
+            <div class="acc-card">
+                <div class="acc-img">
+                    <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?q=80&w=800&auto=format&fit=crop" alt="Wohnwagen">
+                </div>
+                <div class="acc-content">
+                    <h3>Miet-Wohnwagen</h3>
+                    <p>Camping ohne eigenes Equipment. Perfekt für Paare oder kleine Familien (2-3 Personen).</p>
+                    <ul class="acc-features">
+                        <li>3 Schlafplätze</li>
+                        <li>Küche voll ausgestattet</li>
+                        <li>Stromanschluss</li>
+                        <li>Sitzgarnitur im Freien</li>
+                    </ul>
+                    <div class="acc-price">€ 55,00 / Nacht</div>
+                </div>
+            </div>
+            
+            <div class="acc-card">
+                <div class="acc-img">
+                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=800&auto=format&fit=crop" alt="Zeltplatz">
+                </div>
+                <div class="acc-content">
+                    <h3>Stell- & Zeltplätze</h3>
+                    <p>Für alle, die ihr Zuhause selbst mitbringen. Naturbelassene Plätze am Fluss.</p>
+                    <ul class="acc-features">
+                        <li>2 Sanitärgebäude</li>
+                        <li>Strom (220V) & Trinkwasser</li>
+                        <li>Chemietoiletten Entleerung</li>
+                        <li>Grillplätze & Lagerfeuerstellen</li>
+                    </ul>
+                    <div class="acc-price">Preise laut Preisliste</div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 4rem;">
+            <a href="preise.html" class="btn btn-solid">Zur Kompletten Preisliste</a>
+        </div>
+    </section>
+
+    <footer id="kontakt">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 2px;">Sport<span>erlebnis</span></h4>
+                <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Dabei sein beim Frei sein! Ihr Familienbetrieb seit 1982 in Kärnten.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html">Unterkünfte & Camping</a></li>
+                    <li><a href="restaurant.html">Restaurant & Bar</a></li>
+                    <li><a href="schulsport.html">Schulsport</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li>Aktiv-Sport-Erlebnis-Camp Pristavec</li>
+                    <li>9821 Obervellach 175, Austria</li>
+                    <li>Tel: +43 4782 / 2727</li>
+                    <li>Email: info@sporterlebnis.at</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten. Design Konzept "Naturkraft".
+        </div>
+    </footer>
+</body>
+</html>

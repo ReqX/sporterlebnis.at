@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preisliste 2026 - Sporterlebnis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Nunito:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#faf0e6',
+                        sienna: '#a0522d',
+                        orange: '#cc5500',
+                        darkbrown: '#3e2723',
+                        lightwood: '#e8d5c4'
+                    },
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'wood-pattern': `
+                            linear-gradient(45deg, #e8d5c4 25%, transparent 25%, transparent 75%, #e8d5c4 75%, #e8d5c4), 
+                            linear-gradient(45deg, #e8d5c4 25%, transparent 25%, transparent 75%, #e8d5c4 75%, #e8d5c4)
+                        `,
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: theme('colors.cream'); color: theme('colors.darkbrown'); }
+        .bg-wood { background-color: #dfcdba; background-image: repeating-linear-gradient(45deg, rgba(160, 82, 45, 0.05) 0px, rgba(160, 82, 45, 0.05) 2px, transparent 2px, transparent 8px), repeating-linear-gradient(-45deg, rgba(160, 82, 45, 0.03) 0px, rgba(160, 82, 45, 0.03) 2px, transparent 2px, transparent 8px); }
+        .btn-rustic { background-color: theme('colors.orange'); color: white; border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; border: 2px solid theme('colors.sienna'); transition: all 0.3s ease; box-shadow: 4px 4px 0px theme('colors.sienna'); display: inline-flex; align-items: center; justify-content: center; }
+        .btn-rustic:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px theme('colors.sienna'); background-color: theme('colors.sienna'); }
+        .card-rustic { background-color: theme('colors.cream'); border-radius: 16px; border: 3px solid theme('colors.sienna'); box-shadow: 8px 8px 0px rgba(160, 82, 45, 0.2); transition: transform 0.3s ease; }
+        .hand-drawn-border { border-radius: 2% 98% 3% 97% / 97% 4% 96% 3%; }
+        
+        /* Pricing Table Styles */
+        .price-list {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .price-list th {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 3px solid theme('colors.sienna');
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            color: theme('colors.darkbrown');
+        }
+        .price-list td {
+            padding: 1rem;
+            border-bottom: 1px dashed theme('colors.sienna');
+            opacity: 0.9;
+        }
+        .price-list tr:last-child td {
+            border-bottom: none;
+        }
+        .price-list tr:hover td {
+            background-color: theme('colors.lightwood');
+            opacity: 1;
+        }
+        .price-val {
+            text-align: right;
+            font-weight: bold;
+            color: theme('colors.sienna');
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-orange selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="bg-wood border-b-4 border-sienna sticky top-0 z-50 py-4 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <svg class="w-8 h-8 text-orange" fill="currentColor" viewBox="0 0 24 24"><path d="M19.36 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.36 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.64-4.96zM12 18l-4-4h3v-4h2v4h3l-4 4z"/></svg>
+                    <a href="index.html" class="font-serif text-2xl font-bold text-darkbrown tracking-tight">Sporterlebnis<span class="text-orange">.at</span></a>
+                </div>
+                <div class="hidden md:flex space-x-6 font-bold text-darkbrown/80">
+                    <a href="index.html" class="hover:text-orange transition-colors">Home</a>
+                    <a href="rafting.html" class="hover:text-orange transition-colors">Rafting & Canyoning</a>
+                    <a href="camping.html" class="hover:text-orange transition-colors">Camping</a>
+                    <a href="schulsport.html" class="hover:text-orange transition-colors">Schulsport</a>
+                    <a href="restaurant.html" class="hover:text-orange transition-colors">Restaurant</a>
+                    <a href="preise.html" class="text-orange border-b-2 border-orange pb-1">Preise</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="py-16 bg-cream text-center border-b-8 border-sienna">
+        <h1 class="text-5xl md:text-6xl font-serif font-bold text-darkbrown mb-4">Preisliste <span class="text-orange italic">2026</span></h1>
+        <p class="text-xl text-sienna font-medium">Transparente Preise für deinen perfekten Urlaub.</p>
+    </header>
+
+    <!-- Content -->
+    <section class="py-20 bg-wood">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <!-- Camping Preise -->
+                <div class="card-rustic p-8">
+                    <h2 class="text-3xl font-serif font-bold text-darkbrown mb-6 flex items-center gap-3">
+                        <svg class="w-8 h-8 text-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        Camping (pro Nacht)
+                    </h2>
+                    <table class="price-list">
+                        <tbody>
+                            <tr><td>Erwachsener</td><td class="price-val">€ 8,90</td></tr>
+                            <tr><td>Kinder bis 1 Jahr</td><td class="price-val">FREI</td></tr>
+                            <tr><td>Kinder bis 7 Jahren</td><td class="price-val">€ 5,50</td></tr>
+                            <tr><td>Kinder 7-16 Jahren</td><td class="price-val">€ 6,90</td></tr>
+                            <tr><td>Wohnwagen/mobile bis 5,50m</td><td class="price-val">€ 5,90</td></tr>
+                            <tr><td>Wohnwagen/mobile bis 7,50m</td><td class="price-val">€ 6,90</td></tr>
+                            <tr><td>Wohnwagen/mobile ab 7,50m</td><td class="price-val">€ 7,90</td></tr>
+                            <tr><td>Auto beim Zelt</td><td class="price-val">€ 3,50</td></tr>
+                            <tr><td>Auto am Parkplatz</td><td class="price-val">Frei</td></tr>
+                            <tr><td>Strom</td><td class="price-val">€ 3,90</td></tr>
+                            <tr><td>Ortstaxe p.P. ab 16 LJ</td><td class="price-val">€ 4,50</td></tr>
+                            <tr><td>Hund</td><td class="price-val">€ 3,50</td></tr>
+                            <tr><td>Frühstück im Restaurant p.P.</td><td class="price-val">€ 14,50</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Wassersport Preise -->
+                <div class="card-rustic p-8">
+                    <h2 class="text-3xl font-serif font-bold text-darkbrown mb-6 flex items-center gap-3">
+                        <svg class="w-8 h-8 text-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        Wassersport
+                    </h2>
+                    <table class="price-list">
+                        <tbody>
+                            <tr><td>Rafting Möll (Erw.)</td><td class="price-val">€ 55,00</td></tr>
+                            <tr><td>Rafting Möll (Kinder -12 J.)</td><td class="price-val">€ 45,00</td></tr>
+                            <tr><td>Rafting + Tischgrill Zuschlag</td><td class="price-val">+ € 28,00</td></tr>
+                            <tr><td>Miniraft/Outside</td><td class="price-val">€ 55,00</td></tr>
+                            <tr><td>Wildwasser Arena</td><td class="price-val">€ 75,00</td></tr>
+                            <tr><td>Rafting Isel (ab 6 Pers.)</td><td class="price-val">€ 95,00</td></tr>
+                            <tr><td>Kajak inkl. Ausrüstung</td><td class="price-val">€ 50,00</td></tr>
+                            <tr><td>Riverbugging</td><td class="price-val">€ 55,00</td></tr>
+                            <tr><td>Canyoning Easy (3-4 Std.)</td><td class="price-val">€ 59,00</td></tr>
+                            <tr><td>Canyoning Sportiv</td><td class="price-val">€ 91,00</td></tr>
+                            <tr><td>Canyoning Adrenalin Tour</td><td class="price-val">€ 95,00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Unterkünfte Preise -->
+            <div class="card-rustic p-8 mb-12">
+                <h2 class="text-3xl font-serif font-bold text-darkbrown mb-6">Miet-Unterkünfte (pro Nacht)</h2>
+                <div class="overflow-x-auto">
+                    <table class="price-list w-full min-w-[600px]">
+                        <thead>
+                            <tr>
+                                <th>Unterkunft</th>
+                                <th>Vor/Nachsaison</th>
+                                <th>Hauptsaison (Jul-Aug)</th>
+                                <th>Endreinigung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Chalet Kärnten Hütte</strong> (12 Schlafplätze)</td>
+                                <td>€ 275,00</td>
+                                <td>€ 295,00</td>
+                                <td>€ 85,00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mobilheime</strong> (bis 6 Pers.)</td>
+                                <td>€ 115,00</td>
+                                <td>€ 125,00</td>
+                                <td>€ 55,00 (+10€ mit Tier)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tiny Mini Holzhaus</strong></td>
+                                <td>€ 105,00</td>
+                                <td>€ 115,00</td>
+                                <td>€ 45,00 (+15€ mit Tier)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kleine Holzhütten</strong> (4 Pers.)</td>
+                                <td>€ 75,00</td>
+                                <td>€ 85,00</td>
+                                <td>€ 45,00 (+10€ mit Tier)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Wohnwagen klein</strong> (2 Pers.)</td>
+                                <td>€ 55,00</td>
+                                <td>€ 55,00</td>
+                                <td>€ 45,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-sm opacity-70 mb-4">Kartenzahlung nicht möglich.</p>
+                <a href="mailto:info@sporterlebnis.at" class="btn-rustic px-10 py-4 text-xl font-bold">Jetzt reservieren</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darkbrown text-lightwood py-12 border-t-8 border-orange">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <a href="index.html" class="font-serif text-2xl font-bold text-cream tracking-tight mb-4 block">Sporterlebnis<span class="text-orange">.at</span></a>
+                <p class="italic mb-4 text-sm opacity-80">Dabei sein beim Frei sein!</p>
+                <p class="text-sm">Familiengeführtes Aktiv-Sport-Erlebnis-Camp seit 1982 in Kärnten.</p>
+            </div>
+            <div>
+                <h4 class="text-cream font-bold mb-4 font-serif">Kontakt</h4>
+                <address class="not-italic text-sm space-y-2">
+                    <p>Aktiv-Sport-Erlebnis-Camp Pristavec</p>
+                    <p>9821 Obervellach 175, Österreich</p>
+                    <p class="mt-2">Tel: <a href="tel:+4347822727" class="hover:text-orange transition-colors">+43 4782/2727</a></p>
+                    <p>Mail: <a href="mailto:info@sporterlebnis.at" class="hover:text-orange transition-colors">info@sporterlebnis.at</a></p>
+                </address>
+            </div>
+            <div>
+                <h4 class="text-cream font-bold mb-4 font-serif">Quick Links</h4>
+                <ul class="text-sm space-y-2">
+                    <li><a href="index.html" class="hover:text-orange transition-colors">Home</a></li>
+                    <li><a href="rafting.html" class="hover:text-orange transition-colors">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html" class="hover:text-orange transition-colors">Camping & Unterkünfte</a></li>
+                    <li><a href="schulsport.html" class="hover:text-orange transition-colors">Schulsport</a></li>
+                    <li><a href="restaurant.html" class="hover:text-orange transition-colors">Bar & Restaurant</a></li>
+                    <li><a href="preise.html" class="text-orange">Preisliste</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-lightwood/20 text-xs text-center opacity-60">
+            &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+
+</body>
+</html>

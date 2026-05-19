@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schulsport - Sporterlebnis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Nunito:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#faf0e6',
+                        sienna: '#a0522d',
+                        orange: '#cc5500',
+                        darkbrown: '#3e2723',
+                        lightwood: '#e8d5c4'
+                    },
+                    fontFamily: {
+                        serif: ['Fraunces', 'serif'],
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'wood-pattern': `
+                            linear-gradient(45deg, #e8d5c4 25%, transparent 25%, transparent 75%, #e8d5c4 75%, #e8d5c4), 
+                            linear-gradient(45deg, #e8d5c4 25%, transparent 25%, transparent 75%, #e8d5c4 75%, #e8d5c4)
+                        `,
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: theme('colors.cream'); color: theme('colors.darkbrown'); }
+        .bg-wood { background-color: #dfcdba; background-image: repeating-linear-gradient(45deg, rgba(160, 82, 45, 0.05) 0px, rgba(160, 82, 45, 0.05) 2px, transparent 2px, transparent 8px), repeating-linear-gradient(-45deg, rgba(160, 82, 45, 0.03) 0px, rgba(160, 82, 45, 0.03) 2px, transparent 2px, transparent 8px); }
+        .btn-rustic { background-color: theme('colors.orange'); color: white; border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; border: 2px solid theme('colors.sienna'); transition: all 0.3s ease; box-shadow: 4px 4px 0px theme('colors.sienna'); display: inline-flex; align-items: center; justify-content: center; }
+        .btn-rustic:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px theme('colors.sienna'); background-color: theme('colors.sienna'); }
+        .card-rustic { background-color: theme('colors.cream'); border-radius: 16px; border: 3px solid theme('colors.sienna'); box-shadow: 8px 8px 0px rgba(160, 82, 45, 0.2); transition: transform 0.3s ease; }
+        .image-rustic { border-radius: 12px 12px 0 0; border-bottom: 3px solid theme('colors.sienna'); }
+        .section-divider { height: 24px; background-image: radial-gradient(circle at 12px 12px, theme('colors.sienna') 4px, transparent 4px); background-size: 24px 24px; background-repeat: repeat-x; opacity: 0.3; }
+        .hand-drawn-border { border-radius: 2% 98% 3% 97% / 97% 4% 96% 3%; }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-orange selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="bg-wood border-b-4 border-sienna sticky top-0 z-50 py-4 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <svg class="w-8 h-8 text-orange" fill="currentColor" viewBox="0 0 24 24"><path d="M19.36 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.36 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.64-4.96zM12 18l-4-4h3v-4h2v4h3l-4 4z"/></svg>
+                    <a href="index.html" class="font-serif text-2xl font-bold text-darkbrown tracking-tight">Sporterlebnis<span class="text-orange">.at</span></a>
+                </div>
+                <div class="hidden md:flex space-x-6 font-bold text-darkbrown/80">
+                    <a href="index.html" class="hover:text-orange transition-colors">Home</a>
+                    <a href="rafting.html" class="hover:text-orange transition-colors">Rafting & Canyoning</a>
+                    <a href="camping.html" class="hover:text-orange transition-colors">Camping</a>
+                    <a href="schulsport.html" class="text-orange border-b-2 border-orange pb-1">Schulsport</a>
+                    <a href="restaurant.html" class="hover:text-orange transition-colors">Restaurant</a>
+                    <a href="preise.html" class="hover:text-orange transition-colors">Preise</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-darkbrown overflow-hidden py-32 border-b-8 border-sienna">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1600&h=900&fit=crop" alt="Schulsport Action" class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-t from-darkbrown to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <span class="inline-block py-1 px-4 mb-4 bg-orange text-white font-bold rounded-full text-sm uppercase tracking-wider hand-drawn-border transform -rotate-2">Gemeinsam stark</span>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-cream mb-6 leading-tight text-shadow-lg">
+                Schulsportwochen in <span class="text-orange italic">Kärnten</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-lightwood font-medium max-w-3xl mx-auto mb-10 leading-relaxed">
+                Wir bringen Kinder zusammen. Teambildung stärkt das "Ich" durch Spiel, Spaß und Sport.
+            </p>
+        </div>
+    </header>
+
+    <!-- Info Section -->
+    <section class="py-20 bg-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-orange transform rotate-3 rounded-2xl border-4 border-darkbrown"></div>
+                    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=800&h=600&fit=crop" alt="Group Activities" class="relative z-10 rounded-2xl border-4 border-darkbrown transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+                </div>
+                <div>
+                    <h2 class="text-4xl font-serif font-bold text-sienna mb-6">Motivation & Teambildung</h2>
+                    <p class="text-lg mb-6 leading-relaxed">
+                        Ein ausgeklügeltes Programm mit Bodenübungen, Kletterwand und Hochseilgarten helfen dabei, gemeinsam als Team ans Ziel zu kommen. Ziel der Gruppenübungen ist es, nicht nur anderen durch gegenseitiges Sichern zu vertrauen, sondern auch Verantwortung zu übernehmen.
+                    </p>
+                    <p class="text-lg mb-6 leading-relaxed">
+                        Unterbringung in unseren gemütlichen Holzblockhütten mit Stockbetten. Wahlweise mit Halb- oder Vollpension.
+                    </p>
+                    <ul class="grid grid-cols-2 gap-3 font-bold text-darkbrown">
+                        <li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-orange"></div> Rafting & Canyoning</li>
+                        <li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-orange"></div> Hochseilgarten</li>
+                        <li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-orange"></div> Motorikpark®</li>
+                        <li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-orange"></div> Nachtwanderungen</li>
+                        <li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-orange"></div> Golf Schnuppern</li>
+                        <li class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-orange"></div> Lagerfeuer-Abende</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Package / Pricing -->
+    <section class="py-24 bg-wood">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="card-rustic bg-cream p-10 md:p-12 text-center">
+                <h3 class="text-4xl font-serif font-bold text-darkbrown mb-4">Preisbeispiel (5 Tage / 4 Nächte)</h3>
+                <p class="text-xl text-sienna font-medium mb-8">Vollpension (Montag bis Freitag)</p>
+                
+                <ul class="text-left max-w-2xl mx-auto space-y-4 mb-10 text-lg">
+                    <li class="flex items-start gap-3"><svg class="w-6 h-6 text-orange flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 1 Raftfahrt auf der Möll (14 Flusskilometer)</li>
+                    <li class="flex items-start gap-3"><svg class="w-6 h-6 text-orange flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Hochseilgarten mit Teambildung und Motivationsprogramm</li>
+                    <li class="flex items-start gap-3"><svg class="w-6 h-6 text-orange flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Canyoning in der Fragantschlucht</li>
+                    <li class="flex items-start gap-3"><svg class="w-6 h-6 text-orange flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Motorikpark® mit Trainer "Kreativ bewegte Schule"</li>
+                    <li class="flex items-start gap-3"><svg class="w-6 h-6 text-orange flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Schnuppern auf der Golf Driving Range & Flusssurfen</li>
+                </ul>
+                
+                <div class="bg-sienna text-white inline-block px-8 py-4 rounded-xl font-bold text-2xl mb-8 transform -rotate-1 hand-drawn-border">
+                    € 315,- pro Teilnehmer
+                </div>
+                
+                <p class="text-sm opacity-80 mb-6">Wir bieten auch Programme für 2 oder 3 Tage an, individuell auf die Schule abgestimmt.</p>
+                
+                <a href="mailto:info@sporterlebnis.at" class="btn-rustic px-10 py-4 text-xl font-bold">Angebot für Ihre Klasse anfordern</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darkbrown text-lightwood py-12 border-t-8 border-orange">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <a href="index.html" class="font-serif text-2xl font-bold text-cream tracking-tight mb-4 block">Sporterlebnis<span class="text-orange">.at</span></a>
+                <p class="italic mb-4 text-sm opacity-80">Dabei sein beim Frei sein!</p>
+                <p class="text-sm">Familiengeführtes Aktiv-Sport-Erlebnis-Camp seit 1982 in Kärnten.</p>
+            </div>
+            <div>
+                <h4 class="text-cream font-bold mb-4 font-serif">Kontakt</h4>
+                <address class="not-italic text-sm space-y-2">
+                    <p>Aktiv-Sport-Erlebnis-Camp Pristavec</p>
+                    <p>9821 Obervellach 175, Österreich</p>
+                    <p class="mt-2">Tel: <a href="tel:+4347822727" class="hover:text-orange transition-colors">+43 4782/2727</a></p>
+                    <p>Mail: <a href="mailto:info@sporterlebnis.at" class="hover:text-orange transition-colors">info@sporterlebnis.at</a></p>
+                </address>
+            </div>
+            <div>
+                <h4 class="text-cream font-bold mb-4 font-serif">Quick Links</h4>
+                <ul class="text-sm space-y-2">
+                    <li><a href="index.html" class="hover:text-orange transition-colors">Home</a></li>
+                    <li><a href="rafting.html" class="hover:text-orange transition-colors">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html" class="hover:text-orange transition-colors">Camping & Unterkünfte</a></li>
+                    <li><a href="schulsport.html" class="text-orange">Schulsport</a></li>
+                    <li><a href="restaurant.html" class="hover:text-orange transition-colors">Bar & Restaurant</a></li>
+                    <li><a href="preise.html" class="hover:text-orange transition-colors">Preisliste</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-lightwood/20 text-xs text-center opacity-60">
+            &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+
+</body>
+</html>

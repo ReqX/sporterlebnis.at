@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schulsport | Sporterlebnis Pristavec | Naturkraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #090e0b;
+            --color-surface: #121c17;
+            --color-primary: #1a3a2a;
+            --color-primary-light: #2b5c43;
+            --color-accent: #c4a24c;
+            --color-text: #e8edea;
+            --color-text-muted: #a4b3ab;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            transition: background 0.3s ease;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--color-accent);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        nav a.active {
+            color: var(--color-accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-solid:hover {
+            background: #d4b566;
+            color: var(--color-bg);
+            border-color: #d4b566;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2500&auto=format&fit=crop') center/cover no-repeat;
+            filter: brightness(0.4) contrast(1.1);
+            z-index: -1;
+            transform: scale(1.05);
+            animation: slowZoom 20s ease-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 8rem 5%;
+            background: var(--color-bg);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .text-block h2 {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+        }
+
+        .text-block p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+        }
+
+        .activity-list {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .activity-item {
+            background: var(--color-surface);
+            padding: 1.5rem;
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .activity-item h4 {
+            color: var(--color-text);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-item p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .highlight-box {
+            background: var(--color-surface);
+            padding: 3rem;
+            border: 1px solid rgba(196, 162, 76, 0.2);
+            position: sticky;
+            top: 120px;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--color-accent);
+            z-index: -1;
+        }
+
+        .highlight-box h3 {
+            color: var(--color-accent);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin: 1.5rem 0;
+            display: block;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050806;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(196, 162, 76, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a {
+            color: var(--color-text-muted);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .highlight-box {
+                position: static;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Sport<span>erlebnis</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                <li><a href="camping.html">Camping</a></li>
+                <li><a href="schulsport.html" class="active">Schulsport</a></li>
+                <li><a href="restaurant.html">Restaurant</a></li>
+                <li><a href="preise.html">Preise</a></li>
+            </ul>
+        </nav>
+        <a href="#kontakt" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.8rem;">Kontakt</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Schulsport</h1>
+            <p>Gemeinsam wachsen. Teambuildung durch Sport & Natur.</p>
+        </div>
+    </section>
+
+    <section class="page-content">
+        <div class="content-grid">
+            <div class="text-block">
+                <h2>Wir bringen Kinder zusammen</h2>
+                <p>Unsere Schulsportwochen und Schulsporttage zielen darauf ab, durch Spiel, Spaß und Sport das ICH zu stärken und den Zusammenhalt in der Gruppe zu fördern. In der unberührten Natur der Hohen Tauern lernen Schüler, Verantwortung zu übernehmen und Grenzen zu überwinden.</p>
+                <p>Die Unterbringung erfolgt in unseren gemütlichen Holzblockhütten mit Stockbetten. Wir bieten Halb- oder Vollpension, ideal abgestimmt auf aktive Tage im Freien.</p>
+
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <h4>Motivation und Teambildung</h4>
+                        <p>Ein ausgeklügeltes Programm mit Bodenübungen, Kletterwand und Hochseilgarten hilft dabei, gemeinsam als Team ans Ziel zu kommen. Ziel ist es, durch gegenseitiges Sichern Vertrauen aufzubauen.</p>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <h4>Motorikpark ® Kärnten</h4>
+                        <p>"Wir bringen Menschen in Bewegung" mit speziell ausgebildeten Trainern. Die Koordination von Armen und Beinen fördert die Lernfähigkeit und Kreativität im Alltag.</p>
+                    </div>
+
+                    <div class="activity-item">
+                        <h4>Rafting auf der Möll</h4>
+                        <p>Unsere erfahrenen und staatlich geprüften Raftführer sorgen für absolute Sicherheit. Ein gemeinsames Erlebnis im Boot (max. 10 Personen), das zusammenschweißt.</p>
+                    </div>
+
+                    <div class="activity-item">
+                        <h4>Canyoning in der Gratschacher Schlucht</h4>
+                        <p>Dem Flusslauf folgen - rutschen, springen, tümpeln. Die Natur hautnah spüren und persönliche Grenzen sicher ausloten.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="highlight-box">
+                    <h3>Die 5-Tage Schulsportwoche</h3>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">Ein komplettes Programm für eine unvergessliche Woche (Montag bis Freitag):</p>
+                    
+                    <ul style="color: var(--color-text-muted); padding-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                        <li>4 Übernachtungen mit Vollpension</li>
+                        <li>Raftingfahrt auf der Möll (14km)</li>
+                        <li>Hochseilgarten mit Teambildung</li>
+                        <li>Canyoning in der Fragantschlucht</li>
+                        <li>Motorikpark ® mit Trainer</li>
+                        <li>Schnuppern auf der Golf Driving Range</li>
+                        <li>Brückenspringen & Flusssurfen</li>
+                        <li>Nachtwanderung & Lagerfeuer</li>
+                    </ul>
+                    
+                    <span class="price-tag">€ 315,- <span style="font-size: 1rem; color: var(--color-text-muted); font-family: var(--font-body); font-weight: normal;">pro Teilnehmer</span></span>
+                    
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem; text-align: center; margin-bottom: 2rem;">Wir erstellen auch gerne individuelle Angebote für 2-3 Tage, genau auf Ihre Schule abgestimmt.</p>
+                    
+                    <a href="index.html#kontakt" class="btn btn-solid" style="width: 100%; text-align: center;">Angebot Anfragen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontakt">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 2px;">Sport<span>erlebnis</span></h4>
+                <p style="color: var(--color-text-muted); margin-bottom: 1rem;">Dabei sein beim Frei sein! Ihr Familienbetrieb seit 1982 in Kärnten.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html">Unterkünfte & Camping</a></li>
+                    <li><a href="restaurant.html">Restaurant & Bar</a></li>
+                    <li><a href="schulsport.html">Schulsport</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li>Aktiv-Sport-Erlebnis-Camp Pristavec</li>
+                    <li>9821 Obervellach 175, Austria</li>
+                    <li>Tel: +43 4782 / 2727</li>
+                    <li>Email: info@sporterlebnis.at</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten. Design Konzept "Naturkraft".
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preisliste 2026 - Sporterlebnis Kärnten</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        alpine: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            900: '#0f172a',
+                        },
+                        glacier: '#2563eb',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        widest: '.25em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: white; color: theme('colors.alpine.900'); }
+        .table-row { transition: background-color 0.2s ease, transform 0.2s ease; border-bottom: 1px solid theme('colors.alpine.200'); }
+        .table-row:hover { background-color: theme('colors.alpine.50'); transform: translateX(4px); }
+        .table-row:last-child { border-bottom: none; }
+        .section-title { position: relative; display: inline-block; margin-bottom: 3rem; padding-bottom: 1rem; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: theme('colors.glacier'); }
+        .photo-divider { height: 40vh; min-height: 400px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative; }
+        .photo-divider::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.5)); }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-glacier selection:text-white">
+
+    <nav class="bg-white/90 backdrop-blur-md border-b border-alpine-100 sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-xl font-bold tracking-tight text-alpine-900 uppercase">
+                        Sporterlebnis<span class="text-glacier">.at</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide uppercase">
+                    <a href="index.html" class="text-alpine-900 hover:text-glacier transition-colors">Home</a>
+                    <a href="rafting.html" class="text-alpine-900 hover:text-glacier transition-colors">Abenteuer</a>
+                    <a href="camping.html" class="text-alpine-900 hover:text-glacier transition-colors">Camping</a>
+                    <a href="schulsport.html" class="text-alpine-900 hover:text-glacier transition-colors">Schulsport</a>
+                    <a href="restaurant.html" class="text-alpine-900 hover:text-glacier transition-colors">Restaurant</a>
+                    <a href="preise.html" class="text-glacier border-b border-glacier pb-1">Preise</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-alpine-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-24 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-glacier font-semibold tracking-widest uppercase text-sm mb-4">Saison 2026</p>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tighter text-alpine-900 mb-6">Preisliste</h1>
+            <p class="text-lg text-alpine-900/60 font-light max-w-2xl mx-auto">
+                Transparente Konditionen für Ihr nächstes Abenteuer in den Kärntner Bergen.
+            </p>
+        </div>
+    </header>
+
+    <!-- Camping Prices -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold tracking-tight text-alpine-900 section-title uppercase">Camping</h2>
+            
+            <div class="bg-white">
+                <div class="flex justify-between py-4 border-b-2 border-alpine-900 mb-2">
+                    <span class="text-xs font-bold text-alpine-900/50 uppercase tracking-wider">Kategorie</span>
+                    <span class="text-xs font-bold text-alpine-900/50 uppercase tracking-wider">Preis pro Nacht</span>
+                </div>
+                
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Erwachsener</span>
+                    <span class="font-bold">€ 8,90</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Kinder bis 1 Jahr</span>
+                    <span class="font-bold text-glacier">FREI</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Kinder bis 7 Jahren</span>
+                    <span class="font-bold">€ 5,50</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Kinder 7-16 Jahren</span>
+                    <span class="font-bold">€ 6,90</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Wohnwagen/Wohnmobile bis 5,50m</span>
+                    <span class="font-bold">€ 5,90</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Wohnwagen/Wohnmobile bis 7,50m</span>
+                    <span class="font-bold">€ 6,90</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Wohnwagen/Wohnmobile ab 7,50m</span>
+                    <span class="font-bold">€ 7,90</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Auto beim Zelt</span>
+                    <span class="font-bold">€ 3,50</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Zelt (2 Mann)</span>
+                    <span class="font-bold">€ 4,00</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Familienzelt (>4 Personen)</span>
+                    <span class="font-bold">€ 7,00</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium">Strom pro Nacht</span>
+                    <span class="font-bold">€ 3,90</span>
+                </div>
+                <div class="table-row flex justify-between py-4 items-center">
+                    <span class="font-medium text-alpine-900/60 text-sm">Nächtigung/Ortstaxe p.P./Tag ab 16 LJ (Zusätzlich)</span>
+                    <span class="font-bold">€ 4,50</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unterkünfte Prices -->
+    <section class="py-24 bg-alpine-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold tracking-tight text-alpine-900 section-title uppercase">Unterkünfte</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                
+                <!-- Card 1 -->
+                <div class="bg-white p-8 border border-alpine-100 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-2">Mobilheime</h3>
+                    <p class="text-sm text-alpine-900/60 mb-6">Für bis zu 6 Personen</p>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between pb-2 border-b border-alpine-50">
+                            <span>Vor/Nachsaison</span>
+                            <span class="font-bold">€ 115,00</span>
+                        </div>
+                        <div class="flex justify-between pb-2 border-b border-alpine-50">
+                            <span>Hauptsaison</span>
+                            <span class="font-bold">€ 125,00</span>
+                        </div>
+                        <div class="flex justify-between text-alpine-900/60">
+                            <span>Endreinigung</span>
+                            <span>€ 55,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 (Highlighted) -->
+                <div class="bg-alpine-900 text-white p-8 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-glacier text-white text-xs font-bold px-3 py-1 uppercase tracking-wider">
+                        Premium
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Chalet Kärnten Hütte</h3>
+                    <p class="text-sm text-white/60 mb-6">12 Schlafplätze, 4 Zimmer</p>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between pb-2 border-b border-white/10">
+                            <span>Vor/Nachsaison</span>
+                            <span class="font-bold">€ 275,00</span>
+                        </div>
+                        <div class="flex justify-between pb-2 border-b border-white/10">
+                            <span>Hauptsaison & Winter</span>
+                            <span class="font-bold">€ 295,00</span>
+                        </div>
+                        <div class="flex justify-between text-white/60">
+                            <span>Endreinigung</span>
+                            <span>€ 85,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 border border-alpine-100 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-2">Tiny Mini Holzhaus</h3>
+                    <p class="text-sm text-alpine-900/60 mb-6">Minimalistisch im Holz</p>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between pb-2 border-b border-alpine-50">
+                            <span>Mai/September</span>
+                            <span class="font-bold">ab € 105,00</span>
+                        </div>
+                        <div class="flex justify-between pb-2 border-b border-alpine-50">
+                            <span>Juni-August</span>
+                            <span class="font-bold">€ 115,00</span>
+                        </div>
+                        <div class="flex justify-between text-alpine-900/60">
+                            <span>Endreinigung</span>
+                            <span>€ 45,00</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-16 bg-white p-6 border-l-4 border-glacier text-sm text-alpine-900/70 max-w-3xl">
+                <strong class="text-alpine-900 block mb-2 uppercase text-xs tracking-wider">Stornierungsbedingungen</strong>
+                Bei verspäteter Ankunft und vorzeitiger Abreise berechnen wir den vollen Preis des reservierten Zeitraums. 
+                Stornierung 8 Wochen vor Reiseantritt: 20%. Stornierung 4 Wochen vor Reiseantritt: 50%.
+            </div>
+        </div>
+    </section>
+
+    <!-- Wassersport Prices -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-end mb-12">
+                <h2 class="text-3xl font-bold tracking-tight text-alpine-900 section-title uppercase mb-0">Wassersport & Action</h2>
+                <p class="text-sm text-alpine-900/50 uppercase tracking-wider font-medium mt-4 md:mt-0">Preise pro Person</p>
+            </div>
+            
+            <div class="bg-white">
+                <div class="table-row flex justify-between py-5 items-center">
+                    <div>
+                        <span class="font-bold block text-lg">Rafting Möll</span>
+                        <span class="text-sm text-alpine-900/50 block">Erwachsene / Kinder (-12 J.)</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-lg block">€ 55,00</span>
+                        <span class="text-sm text-alpine-900/50 block">€ 45,00 (Kind)</span>
+                    </div>
+                </div>
+                
+                <div class="table-row flex justify-between py-5 items-center">
+                    <div>
+                        <span class="font-bold block text-lg">Canyoning Easy</span>
+                        <span class="text-sm text-alpine-900/50 block">3-4 Stunden Tour</span>
+                    </div>
+                    <span class="font-bold text-lg">€ 59,00</span>
+                </div>
+
+                <div class="table-row flex justify-between py-5 items-center">
+                    <div>
+                        <span class="font-bold block text-lg">Canyoning Sportiv</span>
+                        <span class="text-sm text-alpine-900/50 block">Wunzenschlucht, 4 Std. inkl. HS Training</span>
+                    </div>
+                    <span class="font-bold text-lg">€ 91,00</span>
+                </div>
+
+                <div class="table-row flex justify-between py-5 items-center">
+                    <div>
+                        <span class="font-bold block text-lg">Wildwasser Arena</span>
+                        <span class="text-sm text-alpine-900/50 block">Mini Raft + Riverbug, 3 Runs</span>
+                    </div>
+                    <span class="font-bold text-lg">€ 75,00</span>
+                </div>
+
+                <div class="table-row flex justify-between py-5 items-center">
+                    <div>
+                        <span class="font-bold block text-lg">Rafting Isel Extrem</span>
+                        <span class="text-sm text-alpine-900/50 block">ab 6 Personen</span>
+                    </div>
+                    <span class="font-bold text-lg text-glacier">€ 95,00</span>
+                </div>
+
+                <div class="table-row flex justify-between py-5 items-center">
+                    <div>
+                        <span class="font-bold block text-lg">Hochseilgarten & Kletterwand</span>
+                        <span class="text-sm text-alpine-900/50 block">ab 4 Personen, 1 Stunde</span>
+                    </div>
+                    <span class="font-bold text-lg">€ 25,00</span>
+                </div>
+                
+                <div class="table-row flex justify-between py-5 items-center">
+                    <div>
+                        <span class="font-bold block text-lg">Motorikpark</span>
+                        <span class="text-sm text-alpine-900/50 block">Ohne Trainer</span>
+                    </div>
+                    <span class="font-bold text-lg text-glacier">GRATIS</span>
+                </div>
+            </div>
+
+            <!-- Important Note -->
+            <div class="mt-12 text-center">
+                <span class="inline-block border border-alpine-200 px-6 py-3 text-sm font-medium text-alpine-900/60 uppercase tracking-widest bg-alpine-50">
+                    Hinweis: Kartenzahlung nicht möglich
+                </span>
+            </div>
+            
+            <div class="mt-20 text-center">
+                <a href="#" class="inline-block bg-alpine-900 text-white px-10 py-4 text-sm font-bold uppercase tracking-widest hover:bg-glacier transition-colors duration-300">
+                    Buchung anfragen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-alpine-900 text-white pt-20 pb-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/10 pb-12 mb-8">
+                <div class="mb-8 md:mb-0">
+                    <span class="text-2xl font-bold tracking-tight uppercase block mb-2">Sporterlebnis.at</span>
+                    <span class="text-white/50 text-sm tracking-wide">Aktiv-Sport-Erlebnis-Camp Pristavec</span>
+                </div>
+                <div class="text-left md:text-right text-sm text-white/70 space-y-1">
+                    <p>9821 Obervellach 175, Kärnten</p>
+                    <p>Tel: +43 4782/2727</p>
+                    <p>info@sporterlebnis.at</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-white/40 uppercase tracking-widest">
+                <p>&copy; 2026 Sporterlebnis</p>
+                <div class="space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Impressum</a>
+                    <a href="#" class="hover:text-white transition-colors">Datenschutz</a>
+                    <a href="#" class="hover:text-white transition-colors">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

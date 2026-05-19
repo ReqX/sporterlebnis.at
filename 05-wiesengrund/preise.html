@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preise & Pakete | Sporterlebnis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --green-dark: #4a7c59;
+            --green-light: #8fbc8f;
+            --green-bg: #eef5ef;
+            --earth-tan: #d2b48c;
+            --earth-brown: #8b7355;
+            --bg-color: #fcfbfa;
+            --text-dark: #2c3e2e;
+            --text-light: #6b7a6d;
+            --white: #ffffff;
+            --radius-sm: 16px;
+            --radius-md: 32px;
+            --radius-lg: 64px;
+            --shadow: 0 12px 36px rgba(74, 124, 89, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--green-dark);
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        .navbar-wrapper {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            max-width: 1152px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-radius: 100px;
+            padding: 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--earth-brown);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green-dark);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--green-dark);
+            color: var(--white);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 14px 32px;
+            border-radius: 100px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(143, 188, 143, 0.4);
+            color: var(--white);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--green-dark);
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            padding-top: 140px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, var(--green-bg) 0%, #fff 100%);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: var(--earth-tan);
+            opacity: 0.15;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            z-index: 0;
+            animation: morph 8s ease-in-out infinite alternate;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 span {
+            color: var(--earth-brown);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+        }
+
+        /* Price Tables */
+        .price-section {
+            padding: 60px 0;
+        }
+
+        .price-category {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+            padding: 48px;
+            margin-bottom: 48px;
+            overflow-x: auto;
+        }
+
+        .price-category h2 {
+            font-size: 2.2rem;
+            margin-bottom: 32px;
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .price-table th, .price-table td {
+            padding: 16px 24px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .price-table th {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .price-table td {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .price-table td:last-child {
+            text-align: right;
+            font-weight: 700;
+            color: var(--earth-brown);
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .price-table tr:hover td {
+            background: var(--green-bg);
+        }
+
+        .highlight-row td {
+            background: var(--green-bg) !important;
+            font-weight: 700;
+        }
+
+        /* Note box */
+        .note-box {
+            background: var(--earth-tan);
+            color: var(--white);
+            padding: 24px;
+            border-radius: var(--radius-sm);
+            margin-top: 32px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 80px 0 40px;
+            border-top-left-radius: var(--radius-lg);
+            border-top-right-radius: var(--radius-lg);
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer h4 {
+            color: var(--green-light);
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .footer p, .footer a {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .footer a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 32px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links, .navbar .btn {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .price-category {
+                padding: 24px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--green-dark)"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                Sport<span>erlebnis</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="rafting.html">Rafting & Canyoning</a>
+                <a href="camping.html">Unterkünfte</a>
+                <a href="preise.html" class="active">Preise</a>
+                <a href="schulsport.html">Schulsport</a>
+                <a href="restaurant.html">Restaurant</a>
+            </div>
+            <a href="camping.html#buchen" class="btn">Buchen</a>
+            <button class="menu-toggle">☰</button>
+        </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Preisliste <span>2026</span></h1>
+                <p>Fair, transparent und ohne versteckte Kosten. Entdecke unsere Angebote für Camping, Unterkünfte und Wassersport.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Tables -->
+    <section class="price-section container">
+        
+        <!-- Camping -->
+        <div class="price-category">
+            <h2>🏕️ Camping Stellplätze (pro Nacht)</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Kategorie</th>
+                        <th>Preis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Erwachsener</td>
+                        <td>€ 8,90</td>
+                    </tr>
+                    <tr>
+                        <td>Kinder (bis 1 Jahr)</td>
+                        <td>FREI</td>
+                    </tr>
+                    <tr>
+                        <td>Kinder (bis 7 Jahre)</td>
+                        <td>€ 5,50</td>
+                    </tr>
+                    <tr>
+                        <td>Kinder (7 - 16 Jahre)</td>
+                        <td>€ 6,90</td>
+                    </tr>
+                    <tr>
+                        <td>Wohnwagen/Wohnmobile bis 5,50m</td>
+                        <td>€ 5,90</td>
+                    </tr>
+                    <tr>
+                        <td>Wohnwagen/Wohnmobile bis 7,50m</td>
+                        <td>€ 6,90</td>
+                    </tr>
+                    <tr>
+                        <td>Strom pro Nacht</td>
+                        <td>€ 3,90</td>
+                    </tr>
+                    <tr>
+                        <td>Nächtigung/Ortstaxe p.P./Tag ab 16 LJ</td>
+                        <td>€ 4,50</td>
+                    </tr>
+                    <tr>
+                        <td>Zelt (2 Mann)</td>
+                        <td>€ 4,00</td>
+                    </tr>
+                    <tr>
+                        <td>Familienzelt (>4 Personen)</td>
+                        <td>€ 7,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Unterkünfte -->
+        <div class="price-category">
+            <h2>🏡 Unterkünfte</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Kategorie</th>
+                        <th>Saison</th>
+                        <th>Preis / Nacht</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row">
+                        <td>Chalet Hütte Kärnten (bis 12 Pers.)</td>
+                        <td>Hauptsaison (Juni-Aug, Dez-Feb)</td>
+                        <td>€ 295,00</td>
+                    </tr>
+                    <tr>
+                        <td>Chalet Hütte Kärnten</td>
+                        <td>Vor/Nachsaison</td>
+                        <td>€ 275,00</td>
+                    </tr>
+                    <tr>
+                        <td>Mobilheime</td>
+                        <td>Hauptsaison (Juni-Aug)</td>
+                        <td>€ 125,00</td>
+                    </tr>
+                    <tr>
+                        <td>Mobilheime</td>
+                        <td>Vor/Nachsaison</td>
+                        <td>€ 115,00</td>
+                    </tr>
+                    <tr>
+                        <td>Tiny Mini Holzhaus</td>
+                        <td>Juni-August</td>
+                        <td>€ 115,00</td>
+                    </tr>
+                    <tr>
+                        <td>Kleine Holzhütten (4 Personen)</td>
+                        <td>Juli/August</td>
+                        <td>€ 85,00</td>
+                    </tr>
+                    <tr>
+                        <td>Wohnwagen klein (2 Personen)</td>
+                        <td>Ganzjährig</td>
+                        <td>€ 55,00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-light);">* Zzgl. Endreinigung (35€ - 85€ je nach Unterkunft). Aufpreis für Haustiere.</p>
+        </div>
+
+        <!-- Wassersport -->
+        <div class="price-category">
+            <h2>🌊 Wassersport & Action (pro Person)</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Aktivität</th>
+                        <th>Preis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row">
+                        <td>Rafting Möll (Erwachsene)</td>
+                        <td>€ 55,00</td>
+                    </tr>
+                    <tr>
+                        <td>Rafting Möll (Kinder unter 12 J.)</td>
+                        <td>€ 45,00</td>
+                    </tr>
+                    <tr>
+                        <td>Rafting + Tischgrill Paket</td>
+                        <td>+ € 28,00</td>
+                    </tr>
+                    <tr>
+                        <td>Canyoning Easy (3-4 Std.)</td>
+                        <td>€ 59,00</td>
+                    </tr>
+                    <tr>
+                        <td>Canyoning Sportiv Wunzenschlucht (4 Std. + HS)</td>
+                        <td>€ 91,00</td>
+                    </tr>
+                    <tr>
+                        <td>Wildwasser Arena (Mini Raft + Riverbug)</td>
+                        <td>€ 75,00</td>
+                    </tr>
+                    <tr>
+                        <td>Hochseilgarten + Teambildung (1,5 Std.)</td>
+                        <td>€ 25,00</td>
+                    </tr>
+                    <tr>
+                        <td>Motorikpark mit Trainer (Kinder, 3 Std.)</td>
+                        <td>€ 12,00</td>
+                    </tr>
+                    <tr>
+                        <td>Motorikpark ohne Trainer</td>
+                        <td>GRATIS</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note-box">
+                Kartenzahlung vor Ort ist leider nicht möglich.
+            </div>
+        </div>
+
+        <!-- Pakete -->
+        <div class="price-category">
+            <h2>🎒 Jugend & Abenteuercamp</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Leistung / Paket</th>
+                        <th>Kinder (bis 14)</th>
+                        <th>Erwachsene</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Übernachtung mit Frühstück</td>
+                        <td>€ 27,00</td>
+                        <td>€ 36,00</td>
+                    </tr>
+                    <tr>
+                        <td>Übernachtung mit Halbpension</td>
+                        <td>€ 37,00</td>
+                        <td>€ 47,00</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Aktivwochenende Paket (2 ÜN/HP, 2 Touren)</td>
+                        <td colspan="2" style="text-align: right;">ab € 235,00</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Schulsportwoche (4 ÜN, volles Programm)</td>
+                        <td colspan="2" style="text-align: right;">ab € 278,00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="text-align: center; margin-top: 32px;">
+                <a href="schulsport.html" class="btn">Details zum Schulsport</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Aktiv-Sport-Erlebnis-Camp<br>Pristavec</h4>
+                    <p>9821 Obervellach 175<br>Kärnten, Österreich</p>
+                    <p>Slogan: "Dabei sein beim Frei sein!"</p>
+                </div>
+                <div>
+                    <h4>Kontakt</h4>
+                    <a href="tel:+4347822727">Tel: +43 4782 / 2727</a>
+                    <a href="mailto:info@sporterlebnis.at">info@sporterlebnis.at</a>
+                </div>
+                <div>
+                    <h4>Schnelllinks</h4>
+                    <a href="index.html">Startseite</a>
+                    <a href="preise.html">Preisliste</a>
+                    <a href="schulsport.html">Schulsport</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Alle Rechte vorbehalten.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            if(navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'rgba(255, 255, 255, 0.95)';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderRadius = '20px';
+                navLinks.style.marginTop = '10px';
+                navLinks.style.boxShadow = 'var(--shadow)';
+            }
+        });
+    </script>
+</body>
+</html>

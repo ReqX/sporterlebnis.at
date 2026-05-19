@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preise 2026 | Aktiv-Sport-Erlebnis-Camp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b7a3b;
+            --primary-hover: #2d5e2d;
+            --accent: #ff6600;
+            --accent-hover: #e65c00;
+            --dark: #222222;
+            --light: #f5f5f5;
+            --white: #ffffff;
+            --font-main: 'Nunito', sans-serif;
+            --radius: 8px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); color: var(--dark); background: var(--light); line-height: 1.6; }
+        
+        /* Header & Navigation */
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; max-width: 1200px; margin: 0 auto; }
+        .logo img { max-width: 200px; height: auto; display: block; }
+        
+        nav ul { display: flex; list-style: none; gap: 1.5rem; }
+        nav a { text-decoration: none; color: var(--dark); font-weight: 700; transition: color 0.3s; padding: 0.5rem 0; position: relative; }
+        nav a:hover, nav a.active { color: var(--primary); }
+        nav a::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -2px; left: 0; background-color: var(--accent); transition: width 0.3s; }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--primary); }
+        
+        @media (max-width: 900px) {
+            nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); padding: 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); gap: 0; }
+            nav ul.show { display: flex; }
+            nav a { padding: 1rem 5%; display: block; border-bottom: 1px solid #eee; }
+            nav a::after { display: none; }
+            .menu-toggle { display: block; }
+        }
+
+        /* Page Hero */
+        .page-hero { padding: 4rem 5%; background: var(--primary); color: var(--white); text-align: center; }
+        .page-title { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; }
+
+        /* Main Content Layout */
+        main { padding: 4rem 5%; max-width: 1000px; margin: 0 auto; }
+        
+        .alert-box { background: #fff3cd; color: #856404; padding: 1rem 1.5rem; border-radius: var(--radius); border-left: 5px solid #ffeeba; margin-bottom: 3rem; font-weight: 700; text-align: center; }
+
+        .price-section { margin-bottom: 4rem; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+        .price-header { background: var(--dark); color: var(--white); padding: 1.5rem; }
+        .price-header h2 { color: var(--white); margin: 0; font-size: 1.5rem; }
+        
+        /* Tables */
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 1rem 1.5rem; border-bottom: 1px solid #eee; }
+        th { background: rgba(0,0,0,0.02); font-weight: 700; color: var(--primary); }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(59, 122, 59, 0.03); }
+        .price-cell { font-weight: 800; color: var(--accent); white-space: nowrap; text-align: right; }
+
+        .storno-box { background: var(--light); padding: 2rem; border-radius: var(--radius); margin-top: 4rem; }
+        .storno-box h3 { color: var(--dark); margin-bottom: 1rem; }
+        .storno-box p { font-size: 0.95rem; color: #555; }
+
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr { display: block; }
+            thead tr { position: absolute; top: -9999px; left: -9999px; }
+            tr { border: 1px solid #ccc; margin-bottom: 1rem; border-radius: var(--radius); overflow: hidden; }
+            td { border: none; border-bottom: 1px solid #eee; position: relative; padding-left: 50%; text-align: right; }
+            td:before { position: absolute; top: 1rem; left: 1rem; width: 45%; padding-right: 10px; white-space: nowrap; font-weight: bold; text-align: left; color: #555; }
+            
+            /* Custom labels based on typical 2-column format */
+            td:nth-of-type(1):before { content: "Leistung"; }
+            td:nth-of-type(2):before { content: "Preis"; }
+            
+            /* 3-column format */
+            .col-3 td:nth-of-type(1):before { content: "Leistung"; }
+            .col-3 td:nth-of-type(2):before { content: "Erwachsene"; }
+            .col-3 td:nth-of-type(3):before { content: "Kinder"; }
+        }
+
+        /* Footer */
+        footer { background: var(--dark); color: var(--white); padding: 4rem 5% 2rem; margin-top: 4rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-col h3 { color: var(--white); margin-bottom: 1.5rem; position: relative; padding-bottom: 0.5rem; }
+        .footer-col h3::after { content: ''; position: absolute; width: 40px; height: 3px; background: var(--accent); bottom: 0; left: 0; }
+        .footer-col a { color: #ccc; text-decoration: none; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #888; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Aktiv-Sport-Erlebnis-Camp Pristavec" onerror="this.src='https://via.placeholder.com/200x60?text=Logo';">
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rafting.html">Rafting & Canyoning</a></li>
+                    <li><a href="camping.html">Camping & Unterkunft</a></li>
+                    <li><a href="restaurant.html">Restaurant</a></li>
+                    <li><a href="schulsport.html">Schulsport</a></li>
+                    <li><a href="preise.html" class="active">Preise</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <h1 class="page-title">Preisliste 2026</h1>
+        <p class="page-subtitle">Transparente Preise für Ihren perfekten Urlaub</p>
+    </div>
+
+    <main>
+        <div class="alert-box">
+            Bitte beachten Sie: Kartenzahlung ist bei uns nicht möglich. Nur Barzahlung.
+        </div>
+
+        <section class="price-section">
+            <div class="price-header">
+                <h2>Campingplatz</h2>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Leistung</th>
+                            <th style="text-align: right;">Preis pro Nacht</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Erwachsener</td><td class="price-cell">€ 8,90</td></tr>
+                        <tr><td>Kinder bis 1 Jahr</td><td class="price-cell">FREI</td></tr>
+                        <tr><td>Stellplatz Wohnwagen / Wohnmobil</td><td class="price-cell">€ 11,00 - 14,00</td></tr>
+                        <tr><td>Stellplatz Zelt</td><td class="price-cell">€ 7,00 - 9,00</td></tr>
+                        <tr><td>Strom</td><td class="price-cell">nach Verbrauch</td></tr>
+                        <tr><td>Hunde</td><td class="price-cell">€ 4,00</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="price-section">
+            <div class="price-header">
+                <h2>Unterkünfte</h2>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unterkunft</th>
+                            <th>Saison</th>
+                            <th style="text-align: right;">Preis pro Nacht</th>
+                        </tr>
+                    </thead>
+                    <tbody class="col-3">
+                        <tr>
+                            <td><strong>Chalet Hütte Kärnten</strong> (bis 12 Pers.)</td>
+                            <td>Mai/Jun/Sep/Okt/Nov</td>
+                            <td class="price-cell">€ 260,00</td>
+                        </tr>
+                        <tr>
+                            <td>Chalet Hütte Kärnten</td>
+                            <td>Jul/Aug/Dez-Mrz</td>
+                            <td class="price-cell">€ 295,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tiny Häuser</strong> (4-5 Pers.)</td>
+                            <td>Mai/Sep (HS: €115)</td>
+                            <td class="price-cell">€ 105,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobilheime</strong> (bis 6 Pers.)</td>
+                            <td>Vor-/Nachsaison (HS: €125)</td>
+                            <td class="price-cell">€ 105,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kleine Holzhütten</strong> (4 Pers.)</td>
+                            <td>Mai/Sep (Jul/Aug: €85)</td>
+                            <td class="price-cell">€ 75,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wohnwagen</strong> (2-3 Pers.)</td>
+                            <td>Pauschal</td>
+                            <td class="price-cell">€ 55,00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="font-size: 0.9rem; color: #666; text-align: center;">Endreinigung fällt separat an (siehe Unterkunft-Details)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="price-section">
+            <div class="price-header">
+                <h2>Wassersport & Action</h2>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aktivität</th>
+                            <th style="text-align: right;">Erwachsene</th>
+                            <th style="text-align: right;">Kinder (unter 12)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="col-3">
+                        <tr>
+                            <td>Rafting auf der Möll</td>
+                            <td class="price-cell">€ 49,00</td>
+                            <td class="price-cell">€ 39,00</td>
+                        </tr>
+                        <tr>
+                            <td>Rafting inkl. Grillen</td>
+                            <td class="price-cell">€ 68,00</td>
+                            <td class="price-cell">€ 58,00</td>
+                        </tr>
+                        <tr>
+                            <td>Canyoning Easy</td>
+                            <td class="price-cell">€ 55,00</td>
+                            <td class="price-cell">€ 45,00</td>
+                        </tr>
+                        <tr>
+                            <td>Canyoning Sportiv</td>
+                            <td class="price-cell">€ 75,00</td>
+                            <td class="price-cell">-</td>
+                        </tr>
+                        <tr>
+                            <td>Rafting Isel / Osttirol</td>
+                            <td class="price-cell">€ 65,00</td>
+                            <td class="price-cell">€ 55,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="price-section">
+            <div class="price-header">
+                <h2>Jugend & Abenteuercamp</h2>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Verpflegung</th>
+                            <th style="text-align: right;">Zelt (eigenes)</th>
+                            <th style="text-align: right;">Hütte/Zimmer</th>
+                        </tr>
+                    </thead>
+                    <tbody class="col-3">
+                        <tr>
+                            <td>Übernachtung & Frühstück</td>
+                            <td class="price-cell">€ 27,00</td>
+                            <td class="price-cell">€ 36,00</td>
+                        </tr>
+                        <tr>
+                            <td>Halbpension</td>
+                            <td class="price-cell">€ 37,00</td>
+                            <td class="price-cell">€ 47,00</td>
+                        </tr>
+                        <tr>
+                            <td>Vollpension</td>
+                            <td class="price-cell">€ 47,00</td>
+                            <td class="price-cell">€ 57,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="price-section" style="border-top: 4px solid var(--accent);">
+            <div class="price-header" style="background: var(--white); color: var(--dark); border-bottom: 1px solid #eee;">
+                <h2 style="color: var(--accent);">Pakete & Specials</h2>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><strong>Aktivwochenende</strong><br><small>Camping, Rafting, Canyoning</small></td>
+                            <td class="price-cell">ab € 235,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Schulsportwoche (5 Tage) - Halbpension</strong><br><small>inkl. aller Aktivitäten</small></td>
+                            <td class="price-cell">€ 278,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Schulsportwoche (5 Tage) - Vollpension</strong><br><small>inkl. aller Aktivitäten</small></td>
+                            <td class="price-cell">€ 315,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="storno-box">
+            <h3>Stornierungsbedingungen</h3>
+            <p>Eine Stornierung ist bis 30 Tage vor Anreise kostenfrei. Bei späteren Stornierungen oder vorzeitiger Abreise werden 100% des gebuchten Aufenthalts in Rechnung gestellt. Wir empfehlen den Abschluss einer Reiserücktrittsversicherung.</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Kontakt</h3>
+                <p>Aktiv-Sport-Erlebnis-Camp Pristavec</p>
+                <p>9821 Obervellach 175</p>
+                <p>Kärnten, Austria</p>
+            </div>
+            <div class="footer-col">
+                <h3>Telefon & Mail</h3>
+                <p>Tel: <a href="tel:+4347822727">+43 4782 / 2727</a></p>
+                <p>Mobile: <a href="tel:+436642202938">+43 664 2202938</a></p>
+                <p>Email: <a href="mailto:info@sporterlebnis.at">info@sporterlebnis.at</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>Schnelllinks</h3>
+                <p><a href="rafting.html">Rafting & Canyoning</a></p>
+                <p><a href="camping.html">Unterkünfte</a></p>
+                <p><a href="preise.html">Preisliste 2026</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Aktiv-Sport-Erlebnis-Camp Pristavec. Modernisiert für 2026.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
